@@ -1,0 +1,132 @@
+.promo-banners-section {
+  margin: 2rem 0;
+}
+.promo-banners-grid {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+.promo-banner {
+  background: var(--card-bg);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow);
+  flex: 1;
+  min-width: 200px;
+}
+.promo-banner img {
+  width: 60px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+.promo-banner p {
+  font-weight: 500;
+  margin: 0 0 0.5rem 0;
+  color: var(--text);
+}
+.promo-banner button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+.promo-banner button:hover {
+  background: #e86c00;
+  transition: background 0.2s;
+}
+@media (max-width: 900px) {
+  .promo-banners-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.custom-promo-section {
+  margin: 2rem 0;
+  padding: 0;
+}
+
+.custom-promo-grid {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.custom-promo-banner {
+  display: flex;
+  align-items: flex-end;
+  border-radius: 12px;
+  position: relative;
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+ 
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  min-height: 320px;
+  height: 100%;
+}
+
+/* Make the first banner 2x wider than the second */
+.custom-promo-banner:first-child {
+  flex: 2;
+}
+.custom-promo-banner:last-child {
+  flex: 1;
+}
+
+.custom-promo-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  z-index: 1;
+}
+
+.custom-promo-content {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 0 0 12px 12px;
+  width: 100%;
+}
+
+.custom-promo-content h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.custom-promo-content p {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.custom-promo-content button {
+  background: #ff6a00;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.custom-promo-price {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-left: 1rem;
+} 

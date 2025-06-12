@@ -1,0 +1,178 @@
+.bestsellers-section {
+  padding: 10px;
+  background-color: var(--background-color);
+}
+
+.bestsellers-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bestsellers-loading {
+  text-align: center;
+  font-size: 18px;
+  padding: 20px;
+  color: var(--text-secondary);
+}
+
+.bestsellers-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.bestseller-intro-card {
+  grid-column: span 2;
+  background-color: var(--card-bg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.bestseller-featured-label {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.bestseller-intro-card h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--text-color);
+}
+
+.bestseller-intro-card p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.bestseller-intro-card button {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: bold;
+  margin-top: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.bestseller-intro-card button:hover {
+  background: #e86c00 !important;
+  color: #fff !important;
+}
+
+.bestseller-card {
+  background-color: var(--card-bg);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: box-shadow 0.2s ease;
+}
+
+.bestseller-card:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+}
+
+.bestseller-badge {
+  background-color: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  align-self: flex-start;
+  margin-bottom: 8px;
+}
+
+.bestseller-img-wrap img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.bestseller-meta {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.bestseller-brand {
+  font-weight: 600;
+  display: block;
+  color: var(--text-color);
+}
+
+.bestseller-card h3 {
+  font-size: 16px;
+  margin: 8px 0;
+  color: var(--text-color);
+}
+
+.bestseller-prices {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.bestseller-price {
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.bestseller-old-price {
+  font-size: 14px;
+  color: #888;
+  text-decoration: line-through;
+}
+
+.add-to-cart-btn {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--button-bg, orange);
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--accent, orange);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background 0.2s, opacity 0.2s ease, border 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--accent, #ff9800);
+  color: #fff;
+  border-color: var(--accent, #ff9800);
+}
+
+.bestseller-card:hover .add-to-cart-btn {
+  display: flex;
+}
+
+.add-to-cart-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: #fff;
+}

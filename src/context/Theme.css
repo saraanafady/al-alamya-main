@@ -1,0 +1,70 @@
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --link-hover-color: #ff7d1a;
+  --navbar-bg: #ffffff;
+  --navbar-border: #e5e7eb;
+  --search-bg: #f3f4f6;
+  --search-border: #d1d5db;
+  --text-secondary: #6b7280;
+  --accent: #ff7d1a;
+}
+
+/* Dark mode overrides */
+body.dark {
+  --background-color: #000000;
+  --card-bg: #23272b;
+  --text-color: #f8fafc;
+  --link-hover-color: #ff9800;
+  --navbar-bg: #000000;
+  --navbar-border: #374151;
+  --search-bg: #23272b;
+  --search-border: #444;
+  --shadow: 0 2px 16px rgba(0,0,0,0.7);
+  --text-secondary: #94a3b8;
+  --accent: #ff9800;
+}
+
+/* Base styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-navbar-header {
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+}
+
+.main-nav-link,
+.second-nav-link,
+.main-logo-text,
+.main-search-input,
+.main-dark-mode-toggle span,
+.main-language-selector span,
+.second-contact-info {
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.main-nav-link:hover,
+.second-nav-link:hover {
+  color: var(--link-hover-color);
+}
+
+.main-search-bar {
+  background-color: var(--search-bg);
+  border: 1px solid var(--search-border);
+}
+
+.second-navbar {
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--navbar-border);
+}
+
+.card {
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.04);
+}
