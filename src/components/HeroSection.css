@@ -5,6 +5,7 @@
   margin: 2rem 0;
   padding: 10px;
   background: var(--background-color);
+  border-radius: 12px;
 }
 
 .hero-main-banner {
@@ -21,6 +22,7 @@
   background-repeat: no-repeat;
   background-position: cover;
   background-size: 100%;
+ 
 }
 
 .hero-main-content {
@@ -125,11 +127,22 @@
   }
   .hero-main-banner {
     min-height: 220px;
-    padding: 1.5rem 1rem;
-    background-size: 60% auto;
+    padding: 1.5rem 0.5rem;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
   }
   .hero-main-content {
     max-width: 100%;
+    background: rgba(255,255,255,0.85);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
   }
   .hero-side-banners {
     grid-template-columns: 1fr 1fr;

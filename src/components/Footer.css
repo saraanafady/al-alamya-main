@@ -22,6 +22,17 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent, #ff6a00) #f0f0f0;
+  }
+  .footer-links ul::-webkit-scrollbar {
+    width: 6px;
+  }
+  .footer-links ul::-webkit-scrollbar-thumb {
+    background: var(--accent, #ff6a00);
+    border-radius: 4px;
   }
   .footer-links li {
     margin-bottom: 0.4rem;

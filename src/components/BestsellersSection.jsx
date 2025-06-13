@@ -1,3 +1,4 @@
+import React from 'react';
 import './BestsellersSection.css';
 
 const BestsellersSection = ({ products, loading }) => {
@@ -17,6 +18,7 @@ const BestsellersSection = ({ products, loading }) => {
               </p>
               <button>Shop More</button>
             </div>
+            
             {/* Product Cards */}
             {products.map(product => (
               <div className="bestseller-card" key={product.id}>

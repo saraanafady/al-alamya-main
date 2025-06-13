@@ -1,178 +1,333 @@
+/* BestsellersSection.css */
 .bestsellers-section {
-  padding: 10px;
-  background-color: var(--background-color);
+  padding: 1rem;
+  background-color: var(--background-color, #f8f9fa);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .bestsellers-container {
   width: 100%;
-  margin: 0;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .bestsellers-loading {
   text-align: center;
-  font-size: 18px;
-  padding: 20px;
-  color: var(--text-secondary);
+  font-size: 1.125rem;
+  padding: 2rem;
+  color: var(--text-secondary, #6c757d);
 }
 
 .bestsellers-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .bestseller-intro-card {
   grid-column: span 2;
-  background-color: var(--card-bg);
-  padding: 24px;
+  background-color: var(--card-bg, #ffffff);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  border-radius: 12px;
+  box-shadow: var(--shadow, 0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 .bestseller-featured-label {
-  color: var(--accent);
+  color: var(--accent, #ff6b00);
   font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 8px;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .bestseller-intro-card h2 {
-  font-size: 24px;
-  margin-bottom: 12px;
-  color: var(--text-color);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-color, #212529);
+  line-height: 1.3;
 }
 
 .bestseller-intro-card p {
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 16px;
-  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: var(--text-secondary, #6c757d);
 }
 
 .bestseller-intro-card button {
-  background: var(--accent) !important;
+  background: var(--accent, #ff6b00) !important;
   color: #fff !important;
   border: none;
-  padding: 10px 16px;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
   cursor: pointer;
-  transition: background 0.2s;
-  font-weight: bold;
-  margin-top: 1rem;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  margin-top: 0.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  width: fit-content;
 }
 
 .bestseller-intro-card button:hover {
   background: #e86c00 !important;
-  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .bestseller-card {
-  background-color: var(--card-bg);
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  background-color: var(--card-bg, #ffffff);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow, 0 4px 6px rgba(0, 0, 0, 0.1));
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  transition: box-shadow 0.2s ease;
+  transition: all 0.2s ease;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .bestseller-card:hover {
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
 }
 
 .bestseller-badge {
-  background-color: var(--accent);
+  background-color: var(--accent, #ff6b00);
   color: #fff;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 3px;
-  align-self: flex-start;
-  margin-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+}
+
+.bestseller-img-wrap {
+  position: relative;
+  padding-top: 100%;
+  margin-bottom: 0.75rem;
 }
 
 .bestseller-img-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: contain;
-  margin-bottom: 12px;
+  padding: 0.5rem;
 }
 
 .bestseller-meta {
-  font-size: 10px;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
+  font-size: 0.75rem;
+  color: var(--text-secondary, #6c757d);
+  margin-bottom: 0.25rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .bestseller-brand {
   font-weight: 600;
-  display: block;
-  color: var(--text-color);
+  color: var(--text-color, #212529);
+  font-size: 0.875rem;
 }
 
 .bestseller-card h3 {
-  font-size: 16px;
-  margin: 8px 0;
-  color: var(--text-color);
+  font-size: 0.875rem;
+  margin: 0.5rem 0;
+  color: var(--text-color, #212529);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8em;
 }
 
 .bestseller-prices {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .bestseller-price {
-  font-weight: bold;
-  font-size: 16px;
-  color: var(--accent);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--accent, #ff6b00);
 }
 
 .bestseller-old-price {
-  font-size: 14px;
-  color: #888;
+  font-size: 0.875rem;
+  color: var(--text-secondary, #6c757d);
   text-decoration: line-through;
 }
 
 .add-to-cart-btn {
-  display: none;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  background-color: var(--button-bg, orange);
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--button-bg, #ff6b00);
   color: #fff;
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 1px solid var(--accent, orange);
-  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--accent, #ff6b00);
+  border-radius: 8px;
   cursor: pointer;
   margin-top: auto;
-  transition: background 0.2s, opacity 0.2s ease, border 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: all 0.2s ease;
+  width: 100%;
+  font-weight: 500;
 }
 
 .add-to-cart-btn:hover {
-  background-color: var(--accent, #ff9800);
-  color: #fff;
-  border-color: var(--accent, #ff9800);
-}
-
-.bestseller-card:hover .add-to-cart-btn {
-  display: flex;
+  background-color: var(--accent-hover, #e86c00);
+  transform: translateY(-1px);
 }
 
 .add-to-cart-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 1.25rem;
+  height: 1.25rem;
   fill: #fff;
+}
+
+/* Tablet styles */
+@media (min-width: 768px) {
+  .bestsellers-section {
+    padding: 1.5rem;
+  }
+
+  .bestsellers-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bestseller-intro-card {
+    padding: 2rem;
+  }
+
+  .bestseller-intro-card h2 {
+    font-size: 1.75rem;
+  }
+
+  .bestseller-intro-card p {
+    font-size: 1rem;
+  }
+
+  .bestseller-card {
+    padding: 1.25rem;
+  }
+
+  .bestseller-card h3 {
+    font-size: 1rem;
+  }
+
+  .bestseller-price {
+    font-size: 1.125rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .bestsellers-section {
+    padding: 2rem;
+  }
+
+  .bestsellers-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .bestseller-intro-card {
+    grid-column: span 2;
+    padding: 2.5rem;
+  }
+
+  .bestseller-intro-card h2 {
+    font-size: 2rem;
+  }
+
+  .bestseller-intro-card p {
+    font-size: 1.125rem;
+  }
+
+  .bestseller-card {
+    padding: 1.25rem;
+  }
+
+  .bestseller-img-wrap {
+    padding-top: 90%;
+  }
+
+  .bestseller-card h3 {
+    font-size: 1rem;
+  }
+
+  .bestseller-price {
+    font-size: 1.25rem;
+  }
+
+  .add-to-cart-btn {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Large Desktop styles */
+@media (min-width: 1280px) {
+  .bestsellers-section {
+    padding: 3rem;
+  }
+
+  .bestsellers-grid {
+    gap: 2rem;
+  }
+
+  .bestseller-intro-card {
+    padding: 3rem;
+  }
+
+  .bestseller-intro-card h2 {
+    font-size: 2.25rem;
+  }
+
+  .bestseller-intro-card p {
+    font-size: 1.125rem;
+  }
+
+  .bestseller-card {
+    padding: 1.5rem;
+  }
+
+  .bestseller-img-wrap {
+    padding-top: 85%;
+  }
+
+  .bestseller-card h3 {
+    font-size: 1.125rem;
+  }
+
+  .add-to-cart-btn {
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
 }
