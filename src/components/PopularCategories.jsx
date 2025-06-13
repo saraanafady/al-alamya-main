@@ -18,7 +18,7 @@ const categories = [
 const PopularCategories = () => (
   <section className="popular-categories-section">
     <h2 className="popular-categories-title">Popular Categories</h2>
-    <div className="categories-row">
+    <div className="categories-grid">
       {categories.map((cat, idx) => (
         <div className="category-card" key={idx}>
           <img src={cat.img} alt={cat.label} className="category-img" />

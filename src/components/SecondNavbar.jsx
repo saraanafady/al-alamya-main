@@ -1,58 +1,110 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SecondNavbar.css';
 
 const SecondNavbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [isSticky, setIsSticky] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  // Handle scroll for sticky behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      setIsSticky(scrollTop > 150);
+    };
 
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const categories = [
+    { id: 'all', label: 'All Products', icon: '🏪' },
+    { id: 'phones', label: 'Phones', icon: '📱' },
+    { id: 'laptops', label: 'Laptops', icon: '💻' },
+    { id: 'headphones', label: 'Headphones', icon: '🎧' },
+    { id: 'speakers', label: 'Speakers', icon: '🔊' },
+    { id: 'smartwatches', label: 'Smart Watches', icon: '⌚' },
+    { id: 'gaming', label: 'Gaming', icon: '🎮' },
+    { id: 'accessories', label: 'Accessories', icon: '🔌' }
+  ];
+
+  const handleCategoryClick = (categoryId) => {
+    setActiveCategory(categoryId);
+    // Add your category filtering logic here
+    console.log('Selected category:', categoryId);
   };
 
   return (
-    <nav className="second-navbar">
+    <nav className={`second-navbar ${isSticky ? 'sticky' : ''}`}>
       <div className="second-navbar-container">
-        <button className="mobile-menu-button" onClick={toggleMobileMenu}>
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-
-        <div className="second-nav-links">
-          <a href="/products" className="second-nav-link">Products</a>
-          <a href="/categories" className="second-nav-link">Categories</a>
-          <a href="/deals" className="second-nav-link">Deals</a>
-          <a href="/about" className="second-nav-link">About</a>
-          <a href="/contact" className="second-nav-link">Contact</a>
+        {/* Categories Navigation */}
+        <div className="categories-nav">
+          <div className="categories-scroll">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                className={`category-btn ${activeCategory === category.id ? 'active' : ''}`}
+                onClick={() => handleCategoryClick(category.id)}
+              >
+                <span className="category-icon">{category.icon}</span>
+                <span className="category-label">{category.label}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="second-contact-info">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-          </svg>
-          <span>+1 (555) 123-4567</span>
+        {/* Quick Actions */}
+        <div className="quick-actions">
+          <button className="quick-action-btn filter-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
+            </svg>
+            <span>Filter</span>
+          </button>
+
+          <button className="quick-action-btn sort-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 6h18M7 12h10m-7 6h4"/>
+            </svg>
+            <span>Sort</span>
+          </button>
+
+          <button className="quick-action-btn view-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+            </svg>
+            <span>Grid</span>
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
-        <div className="mobile-menu-header">
-          <h2 className="text-xl font-bold">Menu</h2>
-          <button className="mobile-menu-close" onClick={closeMobileMenu}>
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+      {/* Mobile Category Selector */}
+      <div className="mobile-category-selector">
+        <select 
+          value={activeCategory} 
+          onChange={(e) => handleCategoryClick(e.target.value)}
+          className="mobile-category-select"
+        >
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.label}
+            </option>
+          ))}
+        </select>
+        
+        <div className="mobile-quick-actions">
+          <button className="mobile-quick-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
             </svg>
           </button>
-        </div>
-        <div className="mobile-nav-links">
-          <a href="/products" className="second-nav-link" onClick={closeMobileMenu}>Products</a>
-          <a href="/categories" className="second-nav-link" onClick={closeMobileMenu}>Categories</a>
-          <a href="/deals" className="second-nav-link" onClick={closeMobileMenu}>Deals</a>
-          <a href="/about" className="second-nav-link" onClick={closeMobileMenu}>About</a>
-          <a href="/contact" className="second-nav-link" onClick={closeMobileMenu}>Contact</a>
+          <button className="mobile-quick-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M3 6h18M7 12h10m-7 6h4"/>
+            </svg>
+          </button>
         </div>
       </div>
     </nav>

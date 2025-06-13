@@ -182,21 +182,24 @@
 }
 
 .add-to-cart-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background-color: var(--button-bg, #ff6b00);
-  color: #fff;
-  padding: 0.75rem;
-  font-size: 0.875rem;
-  border: 1px solid var(--accent, #ff6b00);
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: auto;
-  transition: all 0.2s ease;
-  width: 100%;
-  font-weight: 500;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.25rem !important;
+  background-color: var(--button-bg, #ff6b00) !important;
+  color: #fff !important;
+  padding: 6px 10px !important;
+  font-size: 0.75rem !important;
+  border: 1px solid var(--accent, #ff6b00) !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  margin-top: auto !important;
+  transition: all 0.2s ease !important;
+  width: 100% !important;
+  font-weight: 500 !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+  line-height: 1 !important;
 }
 
 .add-to-cart-btn:hover {
@@ -204,10 +207,35 @@
   transform: translateY(-1px);
 }
 
+.add-to-cart-btn.in-cart {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+.add-to-cart-btn.in-cart:hover {
+  background-color: #059669;
+}
+
 .add-to-cart-btn svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: #fff;
+  width: 0.875rem !important;
+  height: 0.875rem !important;
+  fill: #fff !important;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .add-to-cart-btn {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    font-weight: 500 !important;
+  }
+
+  .add-to-cart-btn svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
 }
 
 /* Tablet styles */
@@ -243,6 +271,13 @@
 
   .bestseller-price {
     font-size: 1.125rem;
+  }
+
+  .add-to-cart-btn {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
   }
 }
 
@@ -286,10 +321,7 @@
     font-size: 1.25rem;
   }
 
-  .add-to-cart-btn {
-    padding: 0.75rem;
-    font-size: 0.875rem;
-  }
+ 
 }
 
 /* Large Desktop styles */
@@ -326,8 +358,11 @@
     font-size: 1.125rem;
   }
 
-  .add-to-cart-btn {
-    padding: 0.875rem;
-    font-size: 1rem;
-  }
+      .add-to-cart-btn {
+      padding: 6px 10px !important;
+      font-size: 0.75rem !important;
+      min-height: 32px !important;
+      max-height: 32px !important;
+      font-weight: 500 !important;
+    }
 }
