@@ -1,33 +1,38 @@
 import './GuidesSection.css';
+import { useTranslation } from 'react-i18next';
+
+const GuidesSection = () => {
+  const { t } = useTranslation();
 
 const guides = [
-  { icon: '🎮', title: 'How to Choose the Right Gaming Laptop for Your Needs' },
-  { icon: '📱', title: 'The Best Accessories to Enhance Your Smartphone Experience' },
-  { icon: '🎧', title: 'The Benefits of Noise-Cancelling Headphones' },
-  { icon: '🛠️', title: '10 Tips for Maintaining Your Electronics and Extending Their Lifespan' },
-  { icon: '⚡', title: 'The Future of Wearable Technology: What\'s Coming Next?' },
-  { icon: '📱', title: '5G Phones: How Will the Latest Network Technology Affect Your Experience?' },
+    { icon: '🎮', title: t('guides.items.gamingSetup.title'), desc: t('guides.items.gamingSetup.description') },
+    { icon: '📱', title: t('guides.items.smartHome.title'), desc: t('guides.items.smartHome.description') },
+    { icon: '🎧', title: t('guides.items.choosingHeadphones.title'), desc: t('guides.items.choosingHeadphones.description') },
+    { icon: '🛠️', title: t('guides.items.gamingSetup.title'), desc: t('guides.items.gamingSetup.description') },
+    { icon: '⚡', title: t('guides.items.smartHome.title'), desc: t('guides.items.smartHome.description') },
+    { icon: '📱', title: t('guides.items.choosingHeadphones.title'), desc: t('guides.items.choosingHeadphones.description') },
 ];
 
-const GuidesSection = () => (
+  return (
   <section className="guides-section">
     <div className="guides-header-row">
       <div className="guides-header">
-        <span className="guides-subtitle">HOW TO</span>
-        <h2>Guides for Everything You Need</h2>
+          <span className="guides-subtitle">{t('guides.subtitle')}</span>
+          <h2>{t('guides.title')}</h2>
       </div>
-      <button className="guides-viewall-btn">View All Guides</button>
+        <button className="guides-viewall-btn">{t('common.viewAll')}</button>
     </div>
     <div className="guides-grid">
       {guides.map((guide, idx) => (
         <div className="guide-card" key={idx}>
           <span className="guide-icon orange-icon">{guide.icon}</span>
           <span className="guide-title black-title">{guide.title}</span>
-          <a href="#" className="guide-readmore">Read More</a>
+            <a href="#" className="guide-readmore">{t('guides.readMore')}</a>
         </div>
       ))}
     </div>
   </section>
 );
+};
 
 export default GuidesSection; 

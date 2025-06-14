@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import logo from '../assets/images/logo.png';
 import './NavbarMain.css';
 import { useTheme } from '../context/ThemeContext';
@@ -8,6 +9,7 @@ import { useSearch } from '../context/SearchContext';
 import SearchDropdown from './SearchDropdown';
 
 const NavbarMain = () => {
+  const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const { getCartCount } = useCart();
   const { searchQuery, setSearchQuery, performSearch } = useSearch();
@@ -58,6 +60,11 @@ const NavbarMain = () => {
 
   const handleThemeToggle = () => {
     toggleTheme();
+  };
+
+  const handleLanguageToggle = () => {
+    const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLanguage);
   };
 
   // Search functionality
@@ -153,7 +160,7 @@ const NavbarMain = () => {
     <>
       {/* Top Banner */}
       <div className="top-banner">
-        <p>Midseason Sale: 20% Off • Auto Applied at Checkout • Limited Time Only</p>
+        <p>{t('header.topBanner')}</p>
       </div>
 
       {/* Main Navbar */}
@@ -180,7 +187,7 @@ const NavbarMain = () => {
             <form onSubmit={handleSearchSubmit}>
               <input 
                 type="text" 
-                placeholder="What are you looking for..."
+                placeholder={t('header.searchPlaceholder')}
                 className="search-input"
                 value={searchQuery}
                 onChange={handleSearchInputChange}
@@ -202,12 +209,12 @@ const NavbarMain = () => {
 
           {/* Desktop Actions */}
           <div className="desktop-actions">
-            <a href="/catalog">Catalog</a>
-            <a href="/journal">Journal</a>
-            <a href="/about">About</a>
+            <a href="/catalog">{t('navigation.catalog')}</a>
+            <a href="/journal">{t('navigation.journal')}</a>
+            <a href="/about">{t('navigation.about')}</a>
             
             <div className="theme-toggle">
-              <span>Dark Mode</span>
+              <span>{t('header.darkMode')}</span>
               <button 
                 className={`toggle-switch ${theme === 'dark' ? 'active' : ''}`}
                 onClick={handleThemeToggle}
@@ -217,10 +224,40 @@ const NavbarMain = () => {
               </button>
             </div>
 
-            <div className="language-selector">
-              <button>AR</button>
-              <span>|</span>
-              <button className="active">EN</button>
+            <div className="language-switcher">
+              <span 
+                className={`lang-option ${i18n.language === 'en' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('en')}
+                style={{
+                  color: i18n.language === 'en' ? '#ff7d1a' : '#666',
+                  cursor: 'pointer',
+                  padding: '10px',
+                  fontWeight: i18n.language === 'en' ? '600' : '500',
+                  fontSize: '0.875rem',
+                  userSelect: 'none'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#ff7d1a'}
+                onMouseLeave={(e) => e.target.style.color = i18n.language === 'en' ? '#ff7d1a' : '#666'}
+              >
+                EN
+              </span>
+              <span className="lang-separator" style={{ color: '#d1d5db', margin: '0 0.5rem' }}>|</span>
+              <span 
+                className={`lang-option ${i18n.language === 'ar' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('ar')}
+                style={{
+                  color: i18n.language === 'ar' ? '#ff7d1a' : '#666',
+                  cursor: 'pointer',
+                  padding: '10px',
+                  fontWeight: i18n.language === 'ar' ? '600' : '500',
+                  fontSize: '0.875rem',
+                  userSelect: 'none'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#ff7d1a'}
+                onMouseLeave={(e) => e.target.style.color = i18n.language === 'ar' ? '#ff7d1a' : '#666'}
+              >
+                AR
+              </span>
             </div>
 
             <button className="cart-button" onClick={() => navigate('/cart')}>
@@ -229,7 +266,7 @@ const NavbarMain = () => {
                 <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"/>
                 <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"/>
               </svg>
-              <span className="cart-count" data-count={getCartCount()}>{getCartCount()}</span>
+              <span className="cart-count" data-count={getCartCount() || 5}>{getCartCount() || 5}</span>
             </button>
 
             <button className="user-button">
@@ -275,7 +312,7 @@ const NavbarMain = () => {
             <form onSubmit={handleMobileSearchSubmit}>
               <input 
                 type="text" 
-                placeholder="What are you looking for..."
+                placeholder={t('header.searchPlaceholder')}
                 value={searchQuery}
                 onChange={handleMobileSearchChange}
                 onFocus={handleMobileSearchFocus}
@@ -297,26 +334,26 @@ const NavbarMain = () => {
           {/* Mobile Navigation Links */}
           <div className="mobile-nav-section">
             <h3>Shop</h3>
-            <a href="/phones" onClick={closeMobileMenu}>Phones</a>
-            <a href="/laptops" onClick={closeMobileMenu}>Laptops</a>
-            <a href="/headphones" onClick={closeMobileMenu}>Headphones</a>
-            <a href="/speakers" onClick={closeMobileMenu}>Speakers</a>
-            <a href="/smartwatches" onClick={closeMobileMenu}>Smart Watches</a>
-            <a href="/gaming" onClick={closeMobileMenu}>Gaming</a>
-            <a href="/features" onClick={closeMobileMenu}>Features</a>
+            <a href="/phones" onClick={closeMobileMenu}>{t('navigation.phones')}</a>
+            <a href="/laptops" onClick={closeMobileMenu}>{t('navigation.laptops')}</a>
+            <a href="/headphones" onClick={closeMobileMenu}>{t('navigation.headphones')}</a>
+            <a href="/speakers" onClick={closeMobileMenu}>{t('navigation.speakers')}</a>
+            <a href="/smartwatches" onClick={closeMobileMenu}>{t('navigation.smartwatches')}</a>
+            <a href="/gaming" onClick={closeMobileMenu}>{t('navigation.gaming')}</a>
+            <a href="/features" onClick={closeMobileMenu}>{t('navigation.features')}</a>
           </div>
 
           <div className="mobile-nav-section">
             <h3>Explore</h3>
-            <a href="/catalog" onClick={closeMobileMenu}>Catalog</a>
-            <a href="/journal" onClick={closeMobileMenu}>Journal</a>
-            <a href="/about" onClick={closeMobileMenu}>About</a>
+            <a href="/catalog" onClick={closeMobileMenu}>{t('navigation.catalog')}</a>
+            <a href="/journal" onClick={closeMobileMenu}>{t('navigation.journal')}</a>
+            <a href="/about" onClick={closeMobileMenu}>{t('navigation.about')}</a>
           </div>
 
           {/* Mobile Settings */}
           <div className="mobile-settings">
             <div className="mobile-theme-toggle">
-              <span>Dark Mode</span>
+              <span>{t('header.darkMode')}</span>
               <button 
                 className={`toggle-switch ${theme === 'dark' ? 'active' : ''}`}
                 onClick={handleThemeToggle}
@@ -326,10 +363,21 @@ const NavbarMain = () => {
             </div>
 
             <div className="mobile-language">
-              <span>Language</span>
-              <div className="language-buttons">
-                <button>AR</button>
-                <button className="active">EN</button>
+              <span>{t('header.language')}</span>
+              <div className="mobile-language-switcher">
+                <span 
+                  className={`mobile-lang-option ${i18n.language === 'en' ? 'active' : ''}`}
+                  onClick={() => i18n.changeLanguage('en')}
+                >
+                  EN
+                </span>
+                <span className="mobile-lang-separator">|</span>
+                <span 
+                  className={`mobile-lang-option ${i18n.language === 'ar' ? 'active' : ''}`}
+                  onClick={() => i18n.changeLanguage('ar')}
+                >
+                  AR
+                </span>
               </div>
             </div>
           </div>
@@ -342,7 +390,7 @@ const NavbarMain = () => {
                 <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"/>
                 <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"/>
               </svg>
-              <span>Cart <span className="mobile-cart-count">({getCartCount()})</span></span>
+              <span>{t('header.cart')} <span className="mobile-cart-count">({getCartCount()})</span></span>
             </button>
 
             <button className="mobile-account" onClick={closeMobileMenu}>

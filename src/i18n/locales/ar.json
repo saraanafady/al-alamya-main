@@ -1,0 +1,303 @@
+{
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "save": "حفظ",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "viewAll": "عرض الكل",
+    "showMore": "عرض المزيد",
+    "showLess": "عرض أقل",
+    "backToHome": "العودة للرئيسية",
+    "currency": "ر.س"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "catalog": "الكتالوج",
+    "journal": "المجلة",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "phones": "الهواتف",
+    "laptops": "أجهزة الكمبيوتر المحمولة",
+    "headphones": "سماعات الرأس",
+    "speakers": "مكبرات الصوت",
+    "smartwatches": "الساعات الذكية",
+    "gaming": "الألعاب",
+    "features": "المميزات",
+    "products": "المنتجات",
+    "categories": "الفئات",
+    "allProducts": "جميع المنتجات",
+    "accessories": "الإكسسوارات"
+  },
+  "header": {
+    "topBanner": "تخفيضات منتصف الموسم: خصم 20% • يطبق تلقائياً عند الدفع • لفترة محدودة فقط",
+    "searchPlaceholder": "ابحث عن المنتجات والعلامات التجارية والمزيد...",
+    "cart": "السلة",
+    "account": "الحساب",
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "darkMode": "الوضع المظلم",
+    "language": "اللغة"
+  },
+  "hero": {
+    "title": "اكتشف منتجات مذهلة",
+    "subtitle": "اعثر على أفضل العروض على الإلكترونيات والأجهزة والمزيد",
+    "shopNow": "تسوق الآن",
+    "learnMore": "اعرف المزيد"
+  },
+  "bestsellers": {
+    "title": "أفضل 10 منتجات مبيعاً هذا الأسبوع",
+    "subtitle": "المنتجات المميزة",
+    "description": "تبحث عن أحدث وأفضل الإلكترونيات؟ لا تبحث أكثر من أفضل 10 منتجات مبيعاً لهذا الأسبوع! مجموعتنا المختارة بعناية تضم أحدث الأجهزة والمنتجات الأكثر مبيعاً.",
+    "shopMore": "تسوق المزيد",
+    "sale": "تخفيض",
+    "stockBrand": "المخزون/العلامة التجارية"
+  },
+  "recommendations": {
+    "title": "موصى لك",
+    "new": "وصل حديثاً",
+    "categories": {
+      "all": "الكل",
+      "phones": "الهواتف",
+      "smartWatches": "الساعات الذكية",
+      "gaming": "الألعاب",
+      "laptops": "أجهزة الكمبيوتر المحمولة",
+      "speakers": "مكبرات الصوت"
+    },
+    "viewAllProducts": "عرض جميع المنتجات"
+  },
+  "featured": {
+    "inStockNow": "متوفر الآن",
+    "description": "ارتقِ بتجربتك الصوتية مع صوت غني وقوي، يمزج بسلاسة بين الأناقة والجوهر."
+  },
+  "services": {
+    "freeShipping": {
+      "title": "شحن مجاني",
+      "description": "شحن مجاني على جميع الطلبات أكثر من 200 ريال"
+    },
+    "support": {
+      "title": "دعم 24/7",
+      "description": "احصل على المساعدة عندما تحتاجها"
+    },
+    "returns": {
+      "title": "إرجاع سهل",
+      "description": "سياسة إرجاع لمدة 30 يوماً"
+    },
+    "warranty": {
+      "title": "ضمان",
+      "description": "ضمان لمدة سنة على جميع المنتجات"
+    }
+  },
+  "guides": {
+    "title": "أدلة لكل ما تحتاجه",
+    "subtitle": "كيفية",
+    "readMore": "اقرأ المزيد",
+    "items": {
+      "choosingHeadphones": {
+        "title": "كيفية اختيار سماعات الرأس المثالية",
+        "description": "دليل شامل لاختيار سماعات الرأس التي تناسب نمط حياتك وتفضيلاتك."
+      },
+      "gamingSetup": {
+        "title": "دليل إعداد الألعاب المثالي",
+        "description": "ابنِ بيئة الألعاب المثالية مع توصياتنا المتخصصة."
+      },
+      "smartHome": {
+        "title": "تكامل المنزل الذكي",
+        "description": "اربط وأتمت أجهزتك لتجربة منزل ذكي سلسة."
+      }
+    }
+  },
+  "categories": {
+    "title": "الفئات الشائعة",
+    "exploreAll": "استكشف جميع الفئات"
+  },
+  "promos": {
+    "gaming": {
+      "title": "حطم أعلى النقاط",
+      "description": "مصمم للراحة والدقة، يتيح لك جهاز التحكم الخاص بنا لعب ألعابك المفضلة على هاتفك بسهولة.",
+      "price": "من ر.س 920"
+    },
+    "smartwatch": {
+      "title": "غير الأنماط في لحظة",
+      "description": "غير أسلوبك أثناء التنقل مع ساعاتنا الذكية - غير مظهرك في ثوانٍ مع واجهات الساعة والأحزمة القابلة للتخصيص، مثالية لأي مناسبة."
+    }
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلتك فارغة",
+    "continueShopping": "متابعة التسوق",
+    "product": "المنتج",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "total": "المجموع",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "tax": "الضريبة",
+    "grandTotal": "المجموع الإجمالي",
+    "checkout": "المتابعة للدفع",
+    "addToCart": "أضف للسلة",
+    "inCart": "في السلة",
+    "removeFromCart": "إزالة من السلة",
+    "clearCart": "إفراغ السلة",
+    "updateCart": "تحديث السلة",
+    "promoCode": "كود الخصم",
+    "applyPromo": "تطبيق",
+    "itemsInCart": "{{count}} عنصر في السلة",
+    "itemsInCart_plural": "{{count}} عنصر في السلة",
+    "addedToCart": "تم إضافة {{product}} للسلة!",
+    "removedFromCart": "تم إزالة {{product}} من السلة",
+    "cartCleared": "تم إفراغ السلة بنجاح",
+    "promoApplied": "تم تطبيق كود الخصم! خصم {{discount}}%",
+    "invalidPromo": "كود خصم غير صالح",
+    "free": "مجاني",
+    "color": "اللون"
+  },
+  "productDetails": {
+    "loading": "جاري تحميل تفاصيل المنتج...",
+    "notFound": "المنتج غير موجود",
+    "notFoundDescription": "المنتج الذي تبحث عنه غير موجود.",
+    "inStock": "{{count}} متوفر",
+    "outOfStock": "غير متوفر",
+    "youSave": "توفر {{amount}} ({{percentage}}%)",
+    "quantity": "الكمية:",
+    "addToCart": "أضف للسلة",
+    "buyNow": "اشتر الآن",
+    "features": {
+      "freeShipping": "شحن مجاني",
+      "returns": "إرجاع خلال 30 يوم",
+      "securePayment": "دفع آمن"
+    },
+    "tabs": {
+      "description": "الوصف",
+      "specifications": "المواصفات",
+      "reviews": "التقييمات"
+    },
+    "description": {
+      "title": "وصف المنتج",
+      "keyFeatures": "المميزات الرئيسية:",
+      "features": [
+        "مواد وتصنيع عالي الجودة",
+        "تقنية متقدمة للأداء الأمثل",
+        "تصميم وواجهة سهلة الاستخدام",
+        "متين وطويل الأمد",
+        "مدعوم بضمان الشركة المصنعة"
+      ]
+    },
+    "specifications": {
+      "title": "المواصفات التقنية",
+      "brand": "العلامة التجارية:",
+      "category": "الفئة:",
+      "weight": "الوزن:",
+      "dimensions": "الأبعاد:",
+      "warranty": "الضمان:",
+      "returnPolicy": "سياسة الإرجاع:",
+      "na": "غير متوفر",
+      "defaultWarranty": "سنة واحدة",
+      "defaultReturn": "سياسة إرجاع لمدة 30 يوم"
+    },
+    "reviews": {
+      "title": "تقييمات العملاء",
+      "basedOn": "بناءً على {{count}} تقييم",
+      "basedOn_plural": "بناءً على {{count}} تقييم",
+      "noReviews": "لا توجد تقييمات بعد. كن أول من يقيم هذا المنتج!",
+      "writeReview": "اكتب تقييماً"
+    },
+    "relatedProducts": "منتجات ذات صلة"
+  },
+  "search": {
+    "title": "نتائج البحث",
+    "searchFor": "نتائج البحث عن \"{{query}}\"",
+    "noResults": "لا توجد نتائج",
+    "noResultsDescription": "لا توجد نتائج لـ \"{{query}}\"",
+    "suggestions": "اقتراحات البحث:",
+    "trySearching": "جرب البحث عن:",
+    "searching": "جاري البحث...",
+    "results": "نتائج البحث",
+    "viewDetails": "عرض التفاصيل",
+    "explore": "استكشف",
+    "sortBy": "ترتيب حسب:",
+    "filterBy": "تصفية حسب:",
+    "priceRange": "نطاق السعر:",
+    "categories": "الفئات:",
+    "brands": "العلامات التجارية:",
+    "rating": "التقييم:",
+    "sortOptions": {
+      "relevance": "الصلة",
+      "priceLow": "السعر: من الأقل للأعلى",
+      "priceHigh": "السعر: من الأعلى للأقل",
+      "name": "الاسم",
+      "rating": "التقييم"
+    },
+    "filterOptions": {
+      "all": "الكل",
+      "product": "المنتجات",
+      "category": "الفئات",
+      "guide": "الأدلة"
+    },
+    "resultTypes": {
+      "product": "منتج",
+      "category": "فئة",
+      "guide": "دليل"
+    },
+    "showingResults": "عرض {{count}} نتيجة",
+    "showingResults_plural": "عرض {{count}} نتيجة",
+    "viewAllResults": "عرض جميع النتائج {{count}}"
+  },
+  "footer": {
+    "company": {
+      "title": "الشركة",
+      "about": "شريكك الموثوق للإلكترونيات المتميزة والتكنولوجيا المتطورة.",
+      "careers": "الوظائف",
+      "press": "الصحافة",
+      "blog": "المدونة"
+    },
+    "support": {
+      "title": "الدعم",
+      "help": "مركز المساعدة",
+      "contact": "اتصل بنا",
+      "shipping": "معلومات الشحن",
+      "returns": "الإرجاع"
+    },
+    "legal": {
+      "title": "قانوني",
+      "privacy": "سياسة الخصوصية",
+      "terms": "شروط الخدمة",
+      "cookies": "سياسة ملفات تعريف الارتباط"
+    },
+    "social": {
+      "title": "تابعنا",
+      "facebook": "فيسبوك",
+      "twitter": "تويتر",
+      "instagram": "إنستغرام",
+      "youtube": "يوتيوب"
+    },
+    "newsletter": {
+      "title": "النشرة الإخبارية",
+      "description": "اشترك للحصول على تحديثات حول المنتجات الجديدة والعروض",
+      "placeholder": "أدخل بريدك الإلكتروني",
+      "subscribe": "اشترك"
+    },
+    "copyright": "© {{year}} العالمية. جميع الحقوق محفوظة.",
+    "paymentMethods": "نحن نقبل"
+  },
+  "errors": {
+    "general": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "network": "خطأ في الشبكة. يرجى التحقق من اتصالك.",
+    "notFound": "الصفحة غير موجودة",
+    "unauthorized": "غير مخول لك الوصول إلى هذه الصفحة",
+    "serverError": "خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقاً.",
+    "validationError": "يرجى التحقق من المدخلات والمحاولة مرة أخرى"
+  },
+  "success": {
+    "general": "تمت العملية بنجاح",
+    "saved": "تم حفظ التغييرات بنجاح",
+    "deleted": "تم حذف العنصر بنجاح",
+    "updated": "تم تحديث العنصر بنجاح"
+  }
+} 

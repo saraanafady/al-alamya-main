@@ -2,9 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavbarMain';
 import SecondNavbar from './components/SecondNavbar';
 import './App.css';
+import './i18n'; // Initialize i18n
 import HomePage from './pages/HomePage';
 import Cart from './pages/Cart';
 import SearchResults from './pages/SearchResults';
+import ProductDetails from './pages/ProductDetails';
 import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
@@ -14,17 +16,17 @@ function App() {
   return (
     <CartProvider>
       <SearchProvider>
-        <Router>
-          <div className="min-h-screen w-full bg-[var(--background-color)] text-[var(--text-color)]">
-            <Navbar />
-            <SecondNavbar />
-            <main className="w-full min-h-[calc(100vh-4rem)]">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
+    <Router>
+      <div className="min-h-screen w-full bg-[var(--background-color)] text-[var(--text-color)]">
+        <Navbar />
+        <SecondNavbar />
+        <main className="w-full min-h-[calc(100vh-4rem)]">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/search" element={<SearchResults />} />
                 <Route path="/category/:categoryName" element={<div className="text-center mt-8">Category Page</div>} />
-                <Route path="/product/:productId" element={<div className="text-center mt-8">Product Details Page</div>} />
+                <Route path="/product/:productId" element={<ProductDetails />} />
                 <Route path="/guides/:guideId" element={<div className="text-center mt-8">Guide Page</div>} />
                 <Route path="/catalog" element={<div className="text-center mt-8">Catalog Page</div>} />
                 <Route path="/journal" element={<div className="text-center mt-8">Journal Page</div>} />
@@ -35,15 +37,15 @@ function App() {
                 <Route path="/smartwatches" element={<div className="text-center mt-8">Smart Watches Page</div>} />
                 <Route path="/gaming" element={<div className="text-center mt-8">Gaming Page</div>} />
                 <Route path="/features" element={<div className="text-center mt-8">Features Page</div>} />
-                <Route path="/products" element={<div className="text-center mt-8">Products Page</div>} />
-                <Route path="/categories" element={<div className="text-center mt-8">Categories Page</div>} />
-                <Route path="/about" element={<div className="text-center mt-8">About Page</div>} />
-                <Route path="/contact" element={<div className="text-center mt-8">Contact Page</div>} />
-                <Route path="/login" element={<div className="text-center mt-8">Login Page</div>} />
-                <Route path="/signup" element={<div className="text-center mt-8">Sign Up Page</div>} />
-              </Routes>
-            </main>
-            <Footer />
+            <Route path="/products" element={<div className="text-center mt-8">Products Page</div>} />
+            <Route path="/categories" element={<div className="text-center mt-8">Categories Page</div>} />
+            <Route path="/about" element={<div className="text-center mt-8">About Page</div>} />
+            <Route path="/contact" element={<div className="text-center mt-8">Contact Page</div>} />
+            <Route path="/login" element={<div className="text-center mt-8">Login Page</div>} />
+            <Route path="/signup" element={<div className="text-center mt-8">Sign Up Page</div>} />
+          </Routes>
+        </main>
+        <Footer />
             <Toaster 
               position="top-right"
               toastOptions={{
@@ -72,8 +74,8 @@ function App() {
                 },
               }}
             />
-          </div>
-        </Router>
+      </div>
+    </Router>
       </SearchProvider>
     </CartProvider>
   );

@@ -1,0 +1,452 @@
+/* Global RTL Support */
+[dir="rtl"] {
+  text-align: right;
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', 'Helvetica Neue', 'Amiri', 'Noto Sans Arabic', 'Cairo', sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+[dir="ltr"] {
+  text-align: left;
+}
+
+/* Enhanced Arabic Typography */
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+
+[dir="rtl"] p {
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+[dir="rtl"] .arabic-text {
+  font-size: 1.05em;
+  letter-spacing: 0.02em;
+}
+
+[dir="rtl"] button {
+  font-weight: 600;
+}
+
+[dir="rtl"] .navbar-logo h2,
+[dir="rtl"] .footer-logo h2 {
+  font-weight: 800;
+}
+
+/* RTL Layout Adjustments */
+[dir="rtl"] .navbar-container {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .desktop-actions {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .search-container {
+  direction: ltr; /* Keep search input LTR for better UX */
+}
+
+[dir="rtl"] .mobile-menu {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .mobile-menu-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .breadcrumb {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .product-details-container {
+  direction: rtl;
+}
+
+[dir="rtl"] .product-images {
+  order: 2;
+}
+
+[dir="rtl"] .product-info {
+  order: 1;
+}
+
+[dir="rtl"] .image-thumbnails {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .quantity-controls {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .action-buttons {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .tab-headers {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .related-products-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .cart-items-header {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .cart-item {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .item-info {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .search-results-container {
+  direction: rtl;
+}
+
+[dir="rtl"] .results-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .result-card {
+  text-align: right;
+}
+
+[dir="rtl"] .bestsellers-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .recommendations-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .categories-container {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .services-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .guides-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .popular-categories-grid {
+  direction: rtl;
+}
+
+/* Font Support for Arabic */
+[dir="rtl"] {
+  font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Spacing adjustments for RTL */
+[dir="rtl"] .margin-left {
+  margin-left: 0;
+  margin-right: var(--spacing);
+}
+
+[dir="rtl"] .margin-right {
+  margin-right: 0;
+  margin-left: var(--spacing);
+}
+
+[dir="rtl"] .padding-left {
+  padding-left: 0;
+  padding-right: var(--spacing);
+}
+
+[dir="rtl"] .padding-right {
+  padding-right: 0;
+  padding-left: var(--spacing);
+}
+
+/* Icon adjustments for RTL */
+[dir="rtl"] .arrow-right {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .arrow-left {
+  transform: scaleX(-1);
+}
+
+/* Animation adjustments for RTL */
+[dir="rtl"] .slide-in-right {
+  animation: slideInLeft 0.3s ease;
+}
+
+[dir="rtl"] .slide-in-left {
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Language transition effects */
+.language-transition {
+  transition: all 0.3s ease;
+}
+
+/* Ensure proper text rendering for mixed content */
+.mixed-content {
+  unicode-bidi: plaintext;
+}
+
+/* Price and number formatting */
+[dir="rtl"] .price,
+[dir="rtl"] .number {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* Form adjustments for RTL */
+[dir="rtl"] .form-group {
+  text-align: right;
+}
+
+[dir="rtl"] .form-label {
+  text-align: right;
+}
+
+[dir="rtl"] .checkbox,
+[dir="rtl"] .radio {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+/* Table adjustments for RTL */
+[dir="rtl"] table {
+  direction: rtl;
+}
+
+[dir="rtl"] th,
+[dir="rtl"] td {
+  text-align: right;
+}
+
+/* Responsive RTL adjustments */
+@media (max-width: 768px) {
+  [dir="rtl"] .mobile-menu {
+    right: auto;
+    left: 0;
+  }
+  
+  [dir="rtl"] .mobile-nav-section {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .mobile-actions {
+    flex-direction: column;
+  }
+}
+
+/* Accessibility improvements for RTL */
+[dir="rtl"] .sr-only {
+  direction: rtl;
+}
+
+[dir="rtl"] .focus-visible {
+  outline-offset: 2px;
+}
+
+/* Print styles for RTL */
+@media print {
+  [dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+/* Enhanced RTL Typography and Spacing */
+[dir="rtl"] .desktop-actions {
+  gap: 1.5rem;
+}
+
+/* Enhanced RTL Card Layouts */
+[dir="rtl"] .bestseller-card,
+[dir="rtl"] .recommendation-card,
+[dir="rtl"] .service-card {
+  text-align: right;
+}
+
+[dir="rtl"] .bestseller-card .bestseller-info,
+[dir="rtl"] .recommendation-card .recommendation-info {
+  align-items: flex-end;
+}
+
+[dir="rtl"] .service-card {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .guide-card {
+  text-align: right;
+}
+
+/* RTL Button Improvements */
+[dir="rtl"] .add-to-cart-btn,
+[dir="rtl"] .view-all-btn,
+[dir="rtl"] .category-btn {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* RTL Hero Section - Keep layout structure, only change text alignment */
+[dir="rtl"] .hero-section {
+  /* Ensure grid layout stays the same */
+  grid-template-columns: 2fr 1.2fr;
+  direction: ltr; /* Keep layout direction LTR */
+}
+
+[dir="rtl"] .hero-main-content {
+  align-items: flex-end;
+  text-align: right;
+  direction: rtl; /* Only text content is RTL */
+}
+
+[dir="rtl"] .hero-main-content h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+[dir="rtl"] .hero-side-banners {
+  direction: rtl; /* Only text content is RTL */
+}
+
+[dir="rtl"] .hero-side-banner {
+  text-align: right;
+}
+
+/* RTL Footer Improvements */
+[dir="rtl"] .footer-container {
+  grid-template-columns: 1.5fr 1fr 1fr 2fr;
+}
+
+[dir="rtl"] .footer-links {
+  text-align: right;
+}
+
+[dir="rtl"] .social-links {
+  flex-direction: row-reverse;
+}
+
+/* RTL Search and Input */
+[dir="rtl"] .search-input {
+  text-align: right;
+  padding-right: 1rem;
+  padding-left: 3rem;
+}
+
+[dir="rtl"] .search-button {
+  left: 0.5rem;
+  right: auto;
+}
+
+/* RTL Category Cards */
+[dir="rtl"] .category-card {
+  text-align: center;
+}
+
+[dir="rtl"] .category-label {
+  font-weight: 600;
+}
+
+/* RTL Mobile Improvements */
+@media (max-width: 768px) {
+  [dir="rtl"] .mobile-menu-content {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .mobile-nav-section h3 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  
+  [dir="rtl"] .mobile-nav-section a {
+    padding: 0.75rem 0;
+    font-weight: 500;
+  }
+}
+
+/* RTL Recommendations Section */
+[dir="rtl"] .recommendations-category-btn {
+  font-weight: 600;
+}
+
+[dir="rtl"] .recommendations-category-btn.active {
+  font-weight: 700;
+}
+
+/* RTL Bestsellers Section */
+[dir="rtl"] .bestseller-intro-card {
+  text-align: right;
+}
+
+[dir="rtl"] .bestseller-intro-card h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+/* RTL Services Section */
+[dir="rtl"] .service-card h4 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+[dir="rtl"] .service-card p {
+  line-height: 1.6;
+}
+
+/* RTL Language Switcher */
+[dir="rtl"] .language-button {
+  text-align: right;
+}
+
+/* RTL Navbar improvements */
+[dir="rtl"] .navbar-logo {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+/* RTL Product Cards */
+[dir="rtl"] .product-card-title {
+  text-align: right;
+  font-weight: 600;
+}
+
+[dir="rtl"] .product-card-price {
+  text-align: left;
+  direction: ltr;
+}

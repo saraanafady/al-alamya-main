@@ -1,14 +1,18 @@
 import './ServicesSection.css';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+const ServicesSection = () => {
+  const { t } = useTranslation();
 
 const services = [
-  { icon: '🚚', title: 'Free Shipping & Returns', desc: 'On all orders over $50.' },
-  { icon: '💸', title: 'Money Back Guarantee', desc: '30-day money back guarantee.' },
-  { icon: '💬', title: 'Online Support 24/7', desc: 'Friendly 24/7 customer support.' },
-  {icon: '💳', title: 'Regular Sales', desc: 'Secure payment methods.'},
+    { icon: '🚚', title: t('services.freeShipping.title'), desc: t('services.freeShipping.description') },
+    { icon: '💸', title: t('services.returns.title'), desc: t('services.returns.description') },
+    { icon: '💬', title: t('services.support.title'), desc: t('services.support.description') },
+    { icon: '💳', title: t('services.warranty.title'), desc: t('services.warranty.description') },
 ];
 
-const ServicesSection = () => (
+  return (
   <section className="services-section">
     <div className="services-grid">
       {services.map((service, idx) => (
@@ -26,5 +30,6 @@ const ServicesSection = () => (
     </div>
   </section>
 );
+};
 
 export default ServicesSection; 

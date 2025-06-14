@@ -1,7 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import './Footer.css';
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className="footer">
       {/* Main Footer Content */}
@@ -11,7 +14,7 @@ const Footer = () => {
           <div className="footer-section company-info">
             <div className="footer-logo">
               <h2>Alamia</h2>
-              <p>Your trusted partner for premium electronics and cutting-edge technology.</p>
+              <p>{t('footer.company.about')}</p>
             </div>
             
             <div className="social-links">
@@ -40,18 +43,18 @@ const Footer = () => {
 
           {/* Support */}
           <div className="footer-section">
-            <h4>Support</h4>
+            <h4>{t('footer.support.title')}</h4>
             <ul className="footer-links">
-              <li><a href="/contact">Contact Us</a></li>
-              <li><a href="/shipping">Shipping</a></li>
-              <li><a href="/returns">Returns</a></li>
-              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/contact">{t('footer.support.contact')}</a></li>
+              <li><a href="/shipping">{t('footer.support.shipping')}</a></li>
+              <li><a href="/returns">{t('footer.support.returns')}</a></li>
+              <li><a href="/faq">{t('footer.support.help')}</a></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="footer-section contact-section">
-            <h4>Contact</h4>
+            <h4>{t('footer.support.contact')}</h4>
             <div className="contact-info">
               <div className="contact-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -75,7 +78,7 @@ const Footer = () => {
 
             {/* Payment Methods */}
             <div className="payment-methods">
-              <h5>We Accept</h5>
+              <h5>{t('footer.paymentMethods')}</h5>
               <div className="payment-icons">
                 <div className="payment-card">Visa</div>
                 <div className="payment-card">MC</div>
@@ -90,11 +93,11 @@ const Footer = () => {
       <div className="footer-bottom">
         <div className="footer-bottom-container">
           <div className="footer-bottom-left">
-            <p>&copy; 2024 Alamia. All rights reserved.</p>
+            <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
           </div>
           <div className="footer-bottom-right">
-            <a href="/privacy">Privacy Policy</a>
-            <a href="/terms">Terms of Service</a>
+            <a href="/privacy">{t('footer.legal.privacy')}</a>
+            <a href="/terms">{t('footer.legal.terms')}</a>
           </div>
         </div>
       </div>
