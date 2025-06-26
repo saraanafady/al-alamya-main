@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import './TechSection.css';
 import labtop from '../assets/images/labtop.png';
 import lab2 from '../assets/images/lab2.png';
@@ -11,11 +12,29 @@ const slides = [
 ];
 
 const TechSection = () => {
+  const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
 
-  const goToSlide = idx => setCurrent(idx);
-  const nextSlide = () => setCurrent((current + 1) % slides.length);
-  const prevSlide = () => setCurrent((current - 1 + slides.length) % slides.length);
+  // Auto-play functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prevCurrent) => (prevCurrent + 1) % slides.length);
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
+  const goToSlide = (idx) => {
+    setCurrent(idx);
+  };
+
+  const nextSlide = () => {
+    setCurrent((current + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrent((current - 1 + slides.length) % slides.length);
+  };
 
   return (
     <section className="tech-section">
@@ -25,10 +44,10 @@ const TechSection = () => {
       >
         <div className="tech-overlay" />
         <div className="tech-info">
-          <span className="tech-subtitle">NEW ARRIVALS</span>
-          <h2>Experience the Future with Our New Tech Arrivals</h2>
-          <p>Latest tech arrivals to embark on an exciting digital journey today.</p>
-          <button>Shop Now</button>
+          <span className="tech-subtitle">{t('recommendations.new')}</span>
+          <h2>{t('hero.title')}</h2>
+          <p>{t('hero.subtitle')}</p>
+          <button>{t('hero.shopNow')}</button>
         </div>
         <div className="tech-carousel-dots">
           {slides.map((_, idx) => (

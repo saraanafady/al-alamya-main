@@ -1,55 +1,92 @@
 .popular-categories-section {
-  padding: 20px;
-  color: #333;
+  padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+  color: black;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-.categories-row {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  padding: 0.5rem 0 0 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .category-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
-  border-radius: 16px;
-  width: 150px;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .category-img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: auto;
+  max-width: 200px;
   object-fit: contain;
-  margin: 10px;
+  margin-bottom: 1rem;
 }
 
 .category-label {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #555;
+  font-size: 1rem;
+  color: black;
+  text-align: center;
+  font-weight: 500;
+}
+
+@media (min-width: 640px) {
+  .popular-categories-section {
+    padding: 2rem;
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .popular-categories-section {
+    padding: 1.5rem 0.5rem 2rem 0.5rem;
+  }
+  
+  .categories-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
 }
 
 /* Dark Mode */
-@media (prefers-color-scheme: dark) {
-  .popular-categories-section {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-  }
+[data-theme='dark'] .popular-categories-section {
+  background-color: var(--bg-secondary);
+}
 
-  .category-card {
-    background-color: #2a2a2a;
-  
-  }
+[data-theme='dark'] .category-card {
+  background-color: var(--card-bg);
+}
 
-  .category-label {
-    color: #bbb;
-  }
+[data-theme='dark'] .category-label {
+  color: var(--text-color);
+}
+
 .popular-categories-title,
 .category-label {
-  color: #fff !important;
-}
+  color: black !important;
 }
 
 

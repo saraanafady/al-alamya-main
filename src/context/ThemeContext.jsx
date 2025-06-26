@@ -17,6 +17,10 @@ export const ThemeProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // Set data-theme attribute on document element
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    // Also maintain the body class for compatibility with existing CSS
     if (theme === 'dark') {
       document.body.classList.add('dark');
     } else {

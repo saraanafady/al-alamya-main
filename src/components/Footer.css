@@ -1,58 +1,411 @@
-.footer-section {
-    background-color: #959393;
-    padding: 2rem 0 1rem 0;
-    color: var(--text);
+/* Footer Styles */
+.footer {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: #e2e8f0;
+  margin-top: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Main Footer Content */
+.footer-main {
+  padding: 3rem 0 2rem 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 3rem;
+}
+
+/* Company Info Section */
+.company-info {
+  max-width: 350px;
+}
+
+.footer-logo h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ff7d1a;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 2px 4px rgba(255, 125, 26, 0.3);
+}
+
+.footer-logo p {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
     font-size: 1rem;
   }
-  .footer-main {
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
     display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto 1rem auto;
-    background-color: #959393;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #cbd5e1;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.social-links a:hover {
+  background: #ff7d1a;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 125, 26, 0.4);
+}
+
+.social-links svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Footer Sections */
+.footer-section h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 1.5rem 0;
+  position: relative;
+}
+
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: #ff7d1a;
+  border-radius: 1px;
   }
-  .footer-links h4, .footer-contact h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    color: #ffffff;
-  }
-  .footer-links ul {
+
+.footer-links {
     list-style: none;
     padding: 0;
     margin: 0;
   }
+
   .footer-links li {
-    margin-bottom: 0.4rem;
-    color: black
-    cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
   }
-  .footer-links li:hover {
-    color: var(--accent);
+
+.footer-links a:hover {
+  color: #ff7d1a;
+  transform: translateX(5px);
+}
+
+.footer-links a::before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 1px;
+  background: #ff7d1a;
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::before {
+  width: 10px;
+}
+
+/* Contact Section */
+.contact-section {
+  max-width: 300px;
+}
+
+.contact-info {
+  margin-bottom: 2rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-item svg {
+  width: 20px;
+  height: 20px;
+  color: #ff7d1a;
+  flex-shrink: 0;
+  stroke-width: 2;
   }
-  .footer-contact p {
-    margin: 0.2rem 0;
-    color: black;
+
+.contact-item div p {
+  margin: 0;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Payment Methods */
+.payment-methods {
+  margin-top: 1.5rem;
+}
+
+.payment-methods h5 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.payment-icons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.payment-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.payment-card:hover {
+  background: rgba(255, 125, 26, 0.2);
+  border-color: #ff7d1a;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 0;
+  backdrop-filter: blur(10px);
+}
+
+.footer-bottom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-bottom-left p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.875rem;
+}
+
+.footer-bottom-right {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-bottom-right a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom-right a:hover {
+  color: #ff7d1a;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .footer-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
   }
-  .footer-payments img {
-    margin-right: 0.5rem;
-    vertical-align: middle;
-    border-radius: 4px;
-    background: var(--bg);
-    border: 1px solid #ffffff;
+
+  .company-info {
+    max-width: none;
   }
-  .footer-bottom {
+
+  .contact-section {
+    max-width: none;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .payment-icons {
+    justify-content: flex-start;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 640px) {
+  .footer-main {
+    padding: 2rem 0 1.5rem 0;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .company-info {
     text-align: center;
-    color: white;
-    font-size: 0.95rem;
-    border-top: 1px solid #eee;
-    padding-top: 0.7rem;
   }
-  @media (max-width: 900px) {
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+
+  .payment-icons {
+    justify-content: center;
+  }
+
+  .footer-bottom-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  .footer-bottom-right {
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
     .footer-main {
+    padding: 1.5rem 0 1rem 0;
+  }
+
+  .footer-container {
+    padding: 0 0.75rem;
+  }
+
+  .footer-section h4 {
+    font-size: 1rem;
+  }
+
+  .footer-links a {
+    font-size: 0.875rem;
+  }
+
+  .contact-item {
+    padding: 0.5rem;
+  }
+
+  .payment-icons {
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom-right {
       flex-direction: column;
-      gap: 1.5rem;
-      align-items: flex-start;
-    }
+    gap: 0.5rem;
+  }
+}
+
+/* Dark Mode Support */
+[data-theme='dark'] .footer {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+[data-theme='dark'] .contact-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .payment-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .footer-bottom {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer-section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.footer-section:nth-child(2) { animation-delay: 0.1s; }
+.footer-section:nth-child(3) { animation-delay: 0.2s; }
+.footer-section:nth-child(4) { animation-delay: 0.3s; }
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .footer-section {
+    animation: none;
+  }
+  
+  .social-links a:hover,
+  .footer-links a:hover,
+  .payment-card:hover {
+    transform: none;
+  }
+}
+
+/* Focus states */
+.social-links a:focus,
+.footer-links a:focus,
+.footer-bottom-right a:focus {
+  outline: 2px solid #ff7d1a;
+  outline-offset: 2px;
   }

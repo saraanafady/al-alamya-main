@@ -1,24 +1,28 @@
+import { useTranslation } from 'react-i18next';
 import playstation2 from '../assets/images/playstation2.png';
 import girdSec from '../assets/images/girdSec.png';
 import './PromotionalBanners.css';
 
+const CustomPromoSection = () => {
+  const { t } = useTranslation();
+
 const customBanners = [
   {
     bg: playstation2,
-    title: 'Crash high scores',
-    desc: 'Designed for comfort and precision, our controller allows you to play your favorite games on your phone with ease.',
-    btn: 'Shop Now',
-    price: 'From $245',
+      title: t('promos.gaming.title'),
+      desc: t('promos.gaming.description'),
+      btn: t('hero.shopNow'),
+      price: t('promos.gaming.price'),
   },
   {
     bg: girdSec,
-    title: 'Swap styles in a snap',
-    desc: 'Swap your style on the go with our smartwatches – change your look in seconds with customizable watch faces and bands, perfect for any occasion.',
-    btn: 'Shop Now',
+      title: t('promos.smartwatch.title'),
+      desc: t('promos.smartwatch.description'),
+      btn: t('hero.shopNow'),
   },
 ];
 
-const CustomPromoSection = () => (
+  return (
   <section className="custom-promo-section">
     <div className="custom-promo-grid">
       {customBanners.map((banner, idx) => (
@@ -38,5 +42,6 @@ const CustomPromoSection = () => (
     </div>
   </section>
 );
+};
 
 export default CustomPromoSection; 

@@ -1,115 +1,415 @@
-import React from 'react';
-import logo from '../assets/images/logo.png'; // Use your actual logo path
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import logo from '../assets/images/logo.png';
 import './NavbarMain.css';
 import { useTheme } from '../context/ThemeContext';
+import { useCart } from '../context/CartContext';
+import { useSearch } from '../context/SearchContext';
+import SearchDropdown from './SearchDropdown';
 
 const NavbarMain = () => {
+  const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
+  const { getCartCount } = useCart();
+  const { searchQuery, setSearchQuery, performSearch } = useSearch();
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState(false);
+  const [isMobileSearchDropdownOpen, setIsMobileSearchDropdownOpen] = useState(false);
+  const searchRef = useRef(null);
+  const mobileSearchRef = useRef(null);
 
-  const handleThemeToggle = (e) => {
-    e.preventDefault();
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsMobileSearchDropdownOpen(false);
+  };
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close menu on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+      }
+    };
+    
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+    
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMobileMenuOpen]);
+
+  const handleThemeToggle = () => {
     toggleTheme();
   };
 
-  const Link = ({ to, children, className, ...props }) => (
-    <a href={to} className={className} {...props}>{children}</a>
-  );
+  const handleLanguageToggle = () => {
+    const newLanguage = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLanguage);
+  };
+
+  // Search functionality
+  const handleSearchInputChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query.trim()) {
+      setIsSearchDropdownOpen(true);
+    } else {
+      setIsSearchDropdownOpen(false);
+    }
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+      setIsSearchDropdownOpen(false);
+    }
+  };
+
+  const handleMobileSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query.trim()) {
+      setIsMobileSearchDropdownOpen(true);
+    } else {
+      setIsMobileSearchDropdownOpen(false);
+    }
+  };
+
+  const handleMobileSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+      setIsMobileSearchDropdownOpen(false);
+      closeMobileMenu();
+    }
+  };
+
+  const handleSearchFocus = () => {
+    setIsSearchDropdownOpen(true);
+  };
+
+  const handleSearchBlur = (e) => {
+    // Delay closing to allow clicking on dropdown items
+    setTimeout(() => {
+      if (!searchRef.current?.contains(document.activeElement)) {
+        setIsSearchDropdownOpen(false);
+      }
+    }, 200);
+  };
+
+  const handleMobileSearchFocus = () => {
+    setIsMobileSearchDropdownOpen(true);
+  };
+
+  const handleMobileSearchBlur = (e) => {
+    // Delay closing to allow clicking on dropdown items
+    setTimeout(() => {
+      if (!mobileSearchRef.current?.contains(document.activeElement)) {
+        setIsMobileSearchDropdownOpen(false);
+      }
+    }, 200);
+  };
+
+  const closeSearchDropdown = () => {
+    setIsSearchDropdownOpen(false);
+  };
+
+  const closeMobileSearchDropdown = () => {
+    setIsMobileSearchDropdownOpen(false);
+  };
+
+  // Close search dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setIsSearchDropdownOpen(false);
+      }
+      if (mobileSearchRef.current && !mobileSearchRef.current.contains(event.target)) {
+        setIsMobileSearchDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="main-navbar-wrapper w-full">
+    <>
       {/* Top Banner */}
-      <div className="main-top-banner">
-        <p>Midseason Sale: 20% Off • Auto Applied at Checkout • Limited Time Only.</p>
+      <div className="top-banner">
+        <p>{t('header.topBanner')}</p>
       </div>
 
-      {/* Main Header */}
-      <header className={`main-navbar-header ${theme === 'dark' ? 'dark' : ''}`}>
-        <div className="main-navbar-container">
-          {/* Logo & Shop Now */}
-          <div className="main-navbar-logo">
-            <Link to="/" className="main-logo-link">
-              <img src={logo} alt="Alamia Logo" className="w-24 h-10 object-contain" />
-            </Link>
-            <button className="main-shop-now-btn flex items-center gap-2">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              Shop Now
-            </button>
+      {/* Main Navbar */}
+      <nav className="main-navbar">
+        <div className="navbar-container">
+          {/* Mobile Menu Button */}
+          <button 
+            className="mobile-menu-toggle"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          {/* Logo */}
+          <div className="navbar-logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+            <img src={logo} alt="Alamia" />
           </div>
 
           {/* Search Bar */}
-          <div className="main-search-bar">
-            <input
-              type="text"
-              placeholder="What are you looking for ..."
-              className="main-search-input"
+          <div className="search-container" ref={searchRef}>
+            <form onSubmit={handleSearchSubmit}>
+              <input 
+                type="text" 
+                placeholder={t('header.searchPlaceholder')}
+                className="search-input"
+                value={searchQuery}
+                onChange={handleSearchInputChange}
+                onFocus={handleSearchFocus}
+                onBlur={handleSearchBlur}
+              />
+              <button type="submit" className="search-button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="M21 21l-4.35-4.35"/>
+                </svg>
+              </button>
+            </form>
+            <SearchDropdown 
+              isOpen={isSearchDropdownOpen} 
+              onClose={closeSearchDropdown}
             />
-            <button className="main-search-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="w-5 h-5"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="M21 21l-4.35-4.35" />
-              </svg>
-            </button>
           </div>
 
-          {/* Navigation & Actions */}
-          <div className="main-navbar-actions">
-            <nav className="main-nav-links">
-              <Link to="/catalog" className="main-nav-link">Catalog</Link>
-              <Link to="/journal" className="main-nav-link">Journal</Link>
-              <Link to="/about" className="main-nav-link">About</Link>
-            </nav>
-            <div className="main-dark-mode-toggle">
-              <span>Dark Mode</span>
-              <label className="main-switch">
-                <input
-                  type="checkbox"
-                  checked={theme === 'dark'}
-                  onChange={handleThemeToggle}
-                  className="sr-only"
-                  aria-label="Toggle dark mode"
-                />
-                <span className="main-slider">
-                  <span className={`main-slider-dot${theme === 'dark' ? ' dark' : ''}`}></span>
-                </span>
-              </label>
-            </div>
-            <div className="main-language-selector">
-              <button>AR</button>
-              <span className="text-gray-400">|</span>
-              <button className="main-lang-active">EN</button>
-            </div>
-            <button className="main-cart-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
+          {/* Desktop Actions */}
+          <div className="desktop-actions">
+            <a href="/catalog">{t('navigation.catalog')}</a>
+            <a href="/journal">{t('navigation.journal')}</a>
+            <a href="/about">{t('navigation.about')}</a>
+            
+            <div className="theme-toggle">
+              <span>{t('header.darkMode')}</span>
+              <button 
+                className={`toggle-switch ${theme === 'dark' ? 'active' : ''}`}
+                onClick={handleThemeToggle}
+                aria-label="Toggle dark mode"
               >
-                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                <span className="toggle-slider"></span>
+              </button>
+            </div>
+
+            <div className="language-switcher">
+              <span 
+                className={`lang-option ${i18n.language === 'en' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('en')}
+                style={{
+                  color: i18n.language === 'en' ? '#ff7d1a' : '#666',
+                  cursor: 'pointer',
+                  padding: '10px',
+                  fontWeight: i18n.language === 'en' ? '600' : '500',
+                  fontSize: '0.875rem',
+                  userSelect: 'none'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#ff7d1a'}
+                onMouseLeave={(e) => e.target.style.color = i18n.language === 'en' ? '#ff7d1a' : '#666'}
+              >
+                EN
+              </span>
+              <span className="lang-separator" style={{ color: '#d1d5db', margin: '0 0.5rem' }}>|</span>
+              <span 
+                className={`lang-option ${i18n.language === 'ar' ? 'active' : ''}`}
+                onClick={() => i18n.changeLanguage('ar')}
+                style={{
+                  color: i18n.language === 'ar' ? '#ff7d1a' : '#666',
+                  cursor: 'pointer',
+                  padding: '10px',
+                  fontWeight: i18n.language === 'ar' ? '600' : '500',
+                  fontSize: '0.875rem',
+                  userSelect: 'none'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#ff7d1a'}
+                onMouseLeave={(e) => e.target.style.color = i18n.language === 'ar' ? '#ff7d1a' : '#666'}
+              >
+                AR
+              </span>
+            </div>
+
+            <button className="cart-button" onClick={() => navigate('/cart')}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"/>
+                <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"/>
+                <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"/>
               </svg>
-              <span>0</span>
+              <span className="cart-count" data-count={getCartCount() || 5}>{getCartCount() || 5}</span>
             </button>
-            <button className="login-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+
+            <button className="user-button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"/>
+                <circle cx="12" cy="7" r="4"/>
               </svg>
-              
             </button>
           </div>
         </div>
-      </header>
-    </div>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="mobile-overlay" onClick={closeMobileMenu}></div>
+      )}
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-header">
+          <img 
+            src={logo} 
+            alt="Alamia" 
+            className="mobile-logo" 
+            onClick={() => { navigate('/'); closeMobileMenu(); }}
+            style={{ cursor: 'pointer' }}
+          />
+          <button 
+            className="mobile-close-button"
+            onClick={closeMobileMenu}
+            aria-label="Close menu"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <div className="mobile-menu-content">
+          {/* Mobile Search */}
+          <div className="mobile-search" ref={mobileSearchRef}>
+            <form onSubmit={handleMobileSearchSubmit}>
+              <input 
+                type="text" 
+                placeholder={t('header.searchPlaceholder')}
+                value={searchQuery}
+                onChange={handleMobileSearchChange}
+                onFocus={handleMobileSearchFocus}
+                onBlur={handleMobileSearchBlur}
+              />
+              <button type="submit">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="M21 21l-4.35-4.35"/>
+                </svg>
+              </button>
+            </form>
+            <SearchDropdown 
+              isOpen={isMobileSearchDropdownOpen} 
+              onClose={closeMobileSearchDropdown}
+            />
+          </div>
+
+          {/* Mobile Navigation Links */}
+          <div className="mobile-nav-section">
+            <h3>Shop</h3>
+            <a href="/phones" onClick={closeMobileMenu}>{t('navigation.phones')}</a>
+            <a href="/laptops" onClick={closeMobileMenu}>{t('navigation.laptops')}</a>
+            <a href="/headphones" onClick={closeMobileMenu}>{t('navigation.headphones')}</a>
+            <a href="/speakers" onClick={closeMobileMenu}>{t('navigation.speakers')}</a>
+            <a href="/smartwatches" onClick={closeMobileMenu}>{t('navigation.smartwatches')}</a>
+            <a href="/gaming" onClick={closeMobileMenu}>{t('navigation.gaming')}</a>
+            <a href="/features" onClick={closeMobileMenu}>{t('navigation.features')}</a>
+          </div>
+
+          <div className="mobile-nav-section">
+            <h3>Explore</h3>
+            <a href="/catalog" onClick={closeMobileMenu}>{t('navigation.catalog')}</a>
+            <a href="/journal" onClick={closeMobileMenu}>{t('navigation.journal')}</a>
+            <a href="/about" onClick={closeMobileMenu}>{t('navigation.about')}</a>
+          </div>
+
+          {/* Mobile Settings */}
+          <div className="mobile-settings">
+            <div className="mobile-theme-toggle">
+              <span>{t('header.darkMode')}</span>
+              <button 
+                className={`toggle-switch ${theme === 'dark' ? 'active' : ''}`}
+                onClick={handleThemeToggle}
+              >
+                <span className="toggle-slider"></span>
+              </button>
+            </div>
+
+            <div className="mobile-language">
+              <span>{t('header.language')}</span>
+              <div className="mobile-language-switcher">
+                <span 
+                  className={`mobile-lang-option ${i18n.language === 'en' ? 'active' : ''}`}
+                  onClick={() => i18n.changeLanguage('en')}
+                >
+                  EN
+                </span>
+                <span className="mobile-lang-separator">|</span>
+                <span 
+                  className={`mobile-lang-option ${i18n.language === 'ar' ? 'active' : ''}`}
+                  onClick={() => i18n.changeLanguage('ar')}
+                >
+                  AR
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Actions */}
+          <div className="mobile-actions">
+            <button className="mobile-cart" onClick={() => { navigate('/cart'); closeMobileMenu(); }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z"/>
+                <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z"/>
+                <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"/>
+              </svg>
+              <span>{t('header.cart')} <span className="mobile-cart-count">({getCartCount()})</span></span>
+            </button>
+
+            <button className="mobile-account" onClick={closeMobileMenu}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span>My Account</span>
+            </button>
+          </div>
+
+          {/* Contact Info */}
+          <div className="mobile-contact">
+            <p>Need help? Call us</p>
+            <a href="tel:+84250088833">+84 2500 888 33</a>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
