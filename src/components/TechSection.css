@@ -1,14 +1,15 @@
 .tech-section {
-  margin: 2.5rem 0;
+  margin: 3rem 0;
 }
+
 .tech-banner {
   position: relative;
   width: 100%;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.15);
   background: var(--card-bg);
-  min-height: 400px;
+  min-height: 450px;
   background-image: none;
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,21 +17,28 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+  border: 1px solid var(--border-color, #e2e8f0);
+  transition: all 0.3s ease;
+}
+
+.tech-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(37, 99, 235, 0.2);
 }
 
 .tech-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(15, 23, 42, 0.6) 100%);
   z-index: 1;
 }
 
 .tech-info {
   position: relative;
   z-index: 2;
-  padding: 3rem 2.5rem;
+  padding: 3rem 3rem;
   color: #fff;
-  max-width: 480px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -38,48 +46,60 @@
 }
 
 .tech-subtitle {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  font-weight: 500;
-  opacity: 0.85;
-  margin-bottom: 0.7rem;
+  font-size: 0.875rem;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 1rem;
   text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
 }
 
 .tech-info h2 {
-  font-size: 2.3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: #fff;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .tech-info p {
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   margin-bottom: 2rem;
-  color: #e0e0e0;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
 }
 
 .tech-info button {
-  background: #ff6a00;
-  color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--primary-blue);
   border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 8px;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1.1rem;
-  transition: background 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 .tech-info button:hover {
-  background: #e86c00;
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 /* Swiper Container */
 .tech-swiper {
   width: 100%;
   height: 100%;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -89,27 +109,29 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.9);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .tech-swiper-button:hover {
   background: #fff;
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
 }
 
 .tech-swiper-button svg {
-  width: 20px;
-  height: 20px;
-  color: #ff6a00;
+  width: 22px;
+  height: 22px;
+  color: var(--primary-blue);
 }
 
 .tech-swiper-button-prev {
@@ -134,8 +156,8 @@
 /* Custom Pagination */
 .tech-swiper-pagination {
   position: absolute;
-  right: 2.5rem;
-  bottom: 2rem;
+  right: 3rem;
+  bottom: 2.5rem;
   z-index: 10;
   display: flex;
   gap: 1rem;
@@ -144,32 +166,35 @@
 /* RTL: Move pagination to the left side */
 [dir="rtl"] .tech-swiper-pagination {
   right: auto;
-  left: 2.5rem;
+  left: 3rem;
 }
 
 .tech-pagination-bullet {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: all 0.3s ease;
   opacity: 0.7;
+  backdrop-filter: blur(10px);
 }
 
 .tech-pagination-bullet:hover {
   opacity: 1;
   transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .tech-pagination-bullet.swiper-pagination-bullet-active {
-  background: #ff6a00;
+  background: var(--primary-blue);
   opacity: 1;
   transform: scale(1.1);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
 }
 
 @media (max-width: 900px) {
