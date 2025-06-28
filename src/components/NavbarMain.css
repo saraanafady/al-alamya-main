@@ -5,16 +5,18 @@
 
 /* Top Banner */
 .top-banner {
-  background: #ff7d1a;
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
   color: white;
   text-align: center;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .top-banner p {
   margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Main Navbar */
@@ -25,6 +27,7 @@
   top: 0;
   z-index: 100;
   width: 100%;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
 }
 
 .navbar-container {
@@ -34,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 75px;
   gap: 1rem;
 }
 
@@ -44,7 +47,7 @@
 }
 
 .navbar-logo img {
-  height: 40px;
+  height: 45px;
   width: auto;
 }
 
@@ -53,8 +56,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -63,7 +66,7 @@
 }
 
 .mobile-menu-toggle span {
-  width: 24px;
+  width: 26px;
   height: 3px;
   background: var(--text-color, #333);
   border-radius: 2px;
@@ -72,34 +75,51 @@
 }
 
 .mobile-menu-toggle:hover span {
-  background: #ff7d1a;
+  background: var(--accent);
 }
 
 /* Desktop Navigation */
 .desktop-nav {
   display: none;
-  gap: 2rem;
+  gap: 2.5rem;
   align-items: center;
 }
 
 .desktop-nav a {
   color: var(--text-color, #333);
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
-  padding: 0.5rem 0;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 0.75rem 0;
+  position: relative;
 }
 
 .desktop-nav a:hover {
-  color: #ff7d1a;
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.desktop-nav a:hover::after {
+  width: 100%;
 }
 
 /* Search Container */
 .search-container {
   display: none;
   flex: 1;
-  max-width: 500px;
+  max-width: 600px;
   position: relative;
 }
 
@@ -110,37 +130,41 @@
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  padding-right: 3rem;
-  border: 1px solid var(--border-color, #d1d5db);
+  padding: 1rem 1.25rem;
+  padding-right: 3.5rem;
+  border: 2px solid var(--border-color, #d1d5db);
   border-radius: 50px;
   background: var(--search-bg, #f9fafb);
-  font-size: 0.95rem;
+  font-size: 1rem;
   outline: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   font-family: inherit;
+  font-weight: 500;
 }
 
 .search-input:focus {
-  border-color: #ff7d1a;
-  box-shadow: 0 0 0 3px rgba(255, 125, 26, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  background: #fff;
 }
 
 .search-button {
   position: absolute;
-  right: 0.5rem;
+  right: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background: var(--accent);
   border: none;
   padding: 0.5rem;
+  border-radius: 50%;
   cursor: pointer;
-  color: #ff7d1a;
-  transition: color 0.2s ease;
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
 .search-button:hover {
-  color: #e56b00;
+  background: var(--accent-hover);
+  transform: translateY(-50%) scale(1.05);
 }
 
 .search-button svg {
@@ -152,53 +176,59 @@
 .desktop-actions {
   display: none;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .desktop-actions a {
   color: var(--text-color, #333);
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .desktop-actions a:hover {
-  color: #ff7d1a;
+  color: var(--accent);
+  transform: translateY(-1px);
 }
 
 /* Theme Toggle */
 .theme-toggle {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .toggle-switch {
   position: relative;
-  width: 44px;
-  height: 24px;
-  background: #ccc;
+  width: 50px;
+  height: 26px;
+  background: #e2e8f0;
   border: none;
-  border-radius: 12px;
+  border-radius: 13px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .toggle-switch.active {
-  background: #ff7d1a;
+  background: var(--accent);
 }
 
 .toggle-slider {
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 3px;
+  left: 3px;
   width: 20px;
   height: 20px;
   background: white;
   border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 /* Language Switcher */
 .language-switcher {
   display: flex;
@@ -219,12 +249,12 @@
 }
 
 .lang-option:hover {
-  color: #ff7d1a !important;
+  color: var(--accent) !important;
   /* Temporary debug background */
 }
 
 .lang-option.active {
-  color: #ff7d1a !important;
+  color: var(--accent) !important;
   font-weight: 600 !important;
 }
 
@@ -267,7 +297,7 @@
 }
 
 .language-selector button.active {
-  color: #ff7d1a;
+  color: var(--accent);
   font-weight: 600;
 }
 
@@ -295,8 +325,8 @@
 
 .cart-button:hover,
 .user-button:hover {
-  background: rgba(255, 125, 26, 0.1);
-  color: #ff7d1a;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
 }
 
 .cart-button svg,
@@ -398,8 +428,8 @@
 }
 
 .mobile-close-button:hover {
-  background: rgba(255, 125, 26, 0.1);
-  color: #ff7d1a;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
 }
 
 .mobile-close-button svg {
@@ -435,8 +465,8 @@
 }
 
 .mobile-search input:focus {
-  border-color: #ff7d1a;
-  box-shadow: 0 0 0 3px rgba(255, 125, 26, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .mobile-search button {
@@ -448,12 +478,12 @@
   border: none;
   padding: 0.5rem;
   cursor: pointer;
-  color: #ff7d1a;
+  color: var(--accent);
   transition: color 0.2s ease;
 }
 
 .mobile-search button:hover {
-  color: #e56b00;
+  color: var(--accent-hover);
 }
 
 .mobile-search button svg {
@@ -487,8 +517,8 @@
 }
 
 .mobile-nav-section a:hover {
-  color: #ff7d1a;
-  background: rgba(255, 125, 26, 0.05);
+  color: var(--accent);
+  background: rgba(37, 99, 235, 0.05);
   padding-left: 0.5rem;
 }
 
@@ -531,11 +561,11 @@
 }
 
 .mobile-language .mobile-language-switcher .mobile-lang-option:hover {
-  color: #ff7d1a !important;
+  color: var(--accent) !important;
 }
 
 .mobile-language .mobile-language-switcher .mobile-lang-option.active {
-  color: #ff7d1a !important;
+  color: var(--accent) !important;
   font-weight: 600 !important;
 }
 
@@ -571,7 +601,7 @@
 }
 
 .mobile-cart-count {
-  background: #ff7d1a;
+  background: var(--accent);
   color: white;
   font-size: 0.75rem;
   font-weight: 600;
@@ -582,9 +612,9 @@
 
 .mobile-cart:hover,
 .mobile-account:hover {
-  border-color: #ff7d1a;
-  background: rgba(255, 125, 26, 0.05);
-  color: #ff7d1a;
+  border-color: var(--accent);
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--accent);
 }
 
 .mobile-cart svg,
@@ -609,7 +639,7 @@
 }
 
 .mobile-contact a {
-  color: #ff7d1a;
+  color: var(--accent);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.125rem;
