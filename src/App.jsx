@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/NavbarMain';
-import SecondNavbar from './components/SecondNavbar';
+import Navbar from './components/NavbarMain/NavbarMain';
+import SecondNavbar from './components/SecondNavbar/SecondNavbar';
 import './App.css';
 import './i18n'; // Initialize i18n
-import HomePage from './pages/HomePage';
-import Cart from './pages/Cart';
-import SearchResults from './pages/SearchResults';
-import ProductDetails from './pages/ProductDetails';
-import Footer from './components/Footer';
+import HomePage from './pages/HomePage/HomePage';
+import Cart from './pages/Cart/Cart';
+import SearchResults from './pages/SearchResults/SearchResults';
+import ProductDetails from './pages/ProductDetails/ProductDetails';
+import Products from './pages/Products/Products';
+import Footer from './components/Footer/Footer';
 import { CartProvider } from './context/CartContext';
 import { SearchProvider } from './context/SearchContext';
 import { Toaster } from 'react-hot-toast';
@@ -37,7 +38,7 @@ function App() {
                 <Route path="/smartwatches" element={<div className="text-center mt-8">Smart Watches Page</div>} />
                 <Route path="/gaming" element={<div className="text-center mt-8">Gaming Page</div>} />
                 <Route path="/features" element={<div className="text-center mt-8">Features Page</div>} />
-            <Route path="/products" element={<div className="text-center mt-8">Products Page</div>} />
+            <Route path="/products" element={<Products />} />
             <Route path="/categories" element={<div className="text-center mt-8">Categories Page</div>} />
             <Route path="/about" element={<div className="text-center mt-8">About Page</div>} />
             <Route path="/contact" element={<div className="text-center mt-8">Contact Page</div>} />

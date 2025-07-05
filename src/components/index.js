@@ -1,0 +1,22 @@
+// Organized component exports
+export { default as NewHeroSection } from './NewHeroSection/NewHeroSection';
+export { default as BestsellersSection } from './BestsellersSection/BestsellersSection';
+export { default as BlogSection } from './BlogSection/BlogSection';
+export { default as CategoryCarousel } from './CategoryCarousel/CategoryCarousel';
+export { default as CustomFeaturedSection } from './CustomFeaturedSection/CustomFeaturedSection';
+export { default as CustomPromoSection } from './CustomPromoSection/CustomPromoSection';
+export { default as CustomServicesSection } from './CustomServicesSection/CustomServicesSection';
+export { default as FAQSection } from './FAQSection/FAQSection';
+export { default as FeaturedSection } from './FeaturedSection/FeaturedSection';
+export { default as Footer } from './Footer/Footer';
+export { default as GuidesSection } from './GuidesSection/GuidesSection';
+export { default as HeroSection } from './HeroSection/HeroSection';
+export { default as NavbarMain } from './NavbarMain/NavbarMain';
+export { default as PopularCategories } from './PopularCategories/PopularCategories';
+export { default as ProductCarousel } from './ProductCarousel/ProductCarousel';
+export { default as PromotionalBanners } from './PromotionalBanners/PromotionalBanners';
+export { default as RecommendationsSection } from './RecommendationsSection/RecommendationsSection';
+export { default as SearchDropdown } from './SearchDropdown/SearchDropdown';
+export { default as SecondNavbar } from './SecondNavbar/SecondNavbar';
+export { default as ServicesSection } from './ServicesSection/ServicesSection';
+export { default as TechSection } from './TechSection/TechSection'; 
