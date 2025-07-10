@@ -80,14 +80,3 @@ body.dark {
   color: #fff;
   border-color: var(--accent);
 }
-
-.recommendations-section::before {
-  content: 'DARK MODE ACTIVE';
-  color: var(--accent);
-  display: block;
-}
-
-body.dark .recommendations-section::before {
-  content: 'DARK MODE ACTIVE!';
-  color: var(--light-blue);
-}

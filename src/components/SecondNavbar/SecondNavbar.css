@@ -41,7 +41,7 @@
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 0.5rem 0;
+  padding: 0.5rem;
 }
 
 .categories-scroll::-webkit-scrollbar {
@@ -265,43 +265,43 @@
 }
 
 /* Dark Mode Support */
-[data-theme='dark'] .second-navbar {
+[data-theme="dark"] .second-navbar {
   background: var(--secondary-navbar-bg, #1e293b);
   border-color: var(--border-color, #334155);
 }
 
-[data-theme='dark'] .second-navbar.sticky {
+[data-theme="dark"] .second-navbar.sticky {
   background: var(--secondary-navbar-bg, rgba(30, 41, 59, 0.95));
 }
 
-[data-theme='dark'] .category-btn {
+[data-theme="dark"] .category-btn {
   border-color: var(--border-color, #334155);
   color: var(--text-color, #cbd5e1);
   background: transparent;
 }
 
-[data-theme='dark'] .category-btn:hover {
+[data-theme="dark"] .category-btn:hover {
   background: rgba(255, 125, 26, 0.2);
 }
 
-[data-theme='dark'] .quick-action-btn {
+[data-theme="dark"] .quick-action-btn {
   background: var(--card-bg, #334155);
   border-color: var(--border-color, #475569);
   color: var(--text-color, #cbd5e1);
 }
 
-[data-theme='dark'] .mobile-category-selector {
+[data-theme="dark"] .mobile-category-selector {
   background: var(--secondary-navbar-bg, #1e293b);
   border-color: var(--border-color, #334155);
 }
 
-[data-theme='dark'] .mobile-category-select {
+[data-theme="dark"] .mobile-category-select {
   background: var(--card-bg, #334155);
   border-color: var(--border-color, #475569);
   color: var(--text-color, #f1f5f9);
 }
 
-[data-theme='dark'] .mobile-quick-btn {
+[data-theme="dark"] .mobile-quick-btn {
   background: var(--card-bg, #334155);
   border-color: var(--border-color, #475569);
   color: var(--text-color, #cbd5e1);
@@ -343,19 +343,27 @@
 
 /* Gradient fade for scrollable categories */
 .categories-nav::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
   width: 30px;
   height: 100%;
-  background: linear-gradient(to left, var(--secondary-navbar-bg, #f8fafc), transparent);
+  background: linear-gradient(
+    to left,
+    var(--secondary-navbar-bg, #f8fafc),
+    transparent
+  );
   pointer-events: none;
   z-index: 1;
 }
 
-[data-theme='dark'] .categories-nav::after {
-  background: linear-gradient(to left, var(--secondary-navbar-bg, #1e293b), transparent);
+[data-theme="dark"] .categories-nav::after {
+  background: linear-gradient(
+    to left,
+    var(--secondary-navbar-bg, #1e293b),
+    transparent
+  );
 }
 
 /* Hide gradient on mobile */
