@@ -89,18 +89,18 @@ const Cart = () => {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-16">
+      <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-16 transition-colors duration-300">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex flex-col items-center justify-center text-center py-20">
-            <div className="w-24 h-24 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mb-8">
+            <div className="w-24 h-24 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center mb-8 shadow-lg border border-slate-200 dark:border-slate-700">
               <svg className="w-12 h-12 text-slate-400 dark:text-slate-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="9" cy="21" r="1"/>
                 <circle cx="20" cy="21" r="1"/>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
               </svg>
             </div>
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Your cart is empty</h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-md">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4 transition-colors">Your cart is empty</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 max-w-md transition-colors">
               Looks like you haven't added any items to your cart yet.
             </p>
             <button 
@@ -116,26 +116,24 @@ const Cart = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 py-16">
+    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-16 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">Shopping Cart</h1>
-          <p className="text-slate-600 dark:text-slate-400">
-            {getCartCount()} {getCartCount() === 1 ? 'item' : 'items'} in your cart
-          </p>
+          <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-2 transition-colors">Shopping Cart</h1>
+          <p className="text-slate-600 dark:text-slate-400 transition-colors">{getCartCount()} {getCartCount() === 1 ? 'item' : 'items'} in your cart</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-[0_12px_40px_rgba(37,99,235,0.18)] border border-slate-200 dark:border-slate-700 overflow-hidden transition-all duration-300">
               {/* Header */}
-              <div className="hidden md:grid grid-cols-12 gap-4 p-6 bg-slate-50 dark:bg-slate-700 border-b border-slate-200 dark:border-slate-600">
-                <div className="col-span-6 font-semibold text-slate-700 dark:text-slate-300">Product</div>
-                <div className="col-span-2 font-semibold text-slate-700 dark:text-slate-300 text-center">Price</div>
-                <div className="col-span-2 font-semibold text-slate-700 dark:text-slate-300 text-center">Quantity</div>
-                <div className="col-span-2 font-semibold text-slate-700 dark:text-slate-300 text-right">Total</div>
+              <div className="hidden md:grid grid-cols-12 gap-4 p-6 bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
+                <div className="col-span-6 font-semibold text-slate-700 dark:text-slate-200">Product</div>
+                <div className="col-span-2 font-semibold text-slate-700 dark:text-slate-200 text-center">Price</div>
+                <div className="col-span-2 font-semibold text-slate-700 dark:text-slate-200 text-center">Quantity</div>
+                <div className="col-span-2 font-semibold text-slate-700 dark:text-slate-200 text-right">Total</div>
               </div>
 
               {/* Items */}
@@ -144,20 +142,20 @@ const Cart = () => {
                 const itemTotal = price * item.quantity;
 
                 return (
-                  <div key={item.id} className="p-6 border-b border-slate-200 dark:border-slate-700 last:border-b-0 hover:bg-slate-50 dark:hover:bg-slate-750 transition-colors">
+                  <div key={item.id} className="p-6 border-b border-slate-200 dark:border-slate-700 last:border-b-0 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                     <div className="flex flex-col md:grid md:grid-cols-12 md:gap-4 md:items-center">
                       {/* Product Info */}
                       <div className="col-span-6 flex items-center gap-4 mb-4 md:mb-0">
                         <img 
                           src={item.image} 
                           alt={item.name} 
-                          className="w-20 h-20 object-cover rounded-xl border border-slate-200 dark:border-slate-600" 
+                          className="w-20 h-20 object-cover rounded-xl border border-slate-200 dark:border-slate-600 shadow-sm bg-slate-50 dark:bg-slate-900" 
                         />
                         <div className="flex-1">
                           <h3 className="font-semibold text-slate-900 dark:text-white text-lg mb-1">{item.name}</h3>
                           <p className="text-slate-600 dark:text-slate-400 text-sm mb-1 capitalize">{item.category}</p>
                           {item.color && (
-                            <span className="inline-block bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs px-2 py-1 rounded-md">
+                            <span className="inline-block bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-300 text-xs px-2 py-1 rounded-md">
                               Color: {item.color}
                             </span>
                           )}
@@ -173,9 +171,9 @@ const Cart = () => {
 
                       {/* Quantity */}
                       <div className="col-span-2 flex justify-center mb-4 md:mb-0">
-                        <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-700 rounded-lg p-1">
+                        <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-900 rounded-lg p-1 shadow-sm">
                           <button 
-                            className="w-8 h-8 rounded-md bg-white dark:bg-slate-600 text-slate-700 dark:text-slate-300 font-bold hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center justify-center"
+                            className="w-8 h-8 rounded-md bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center justify-center shadow-sm"
                             onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                           >
                             -
@@ -184,7 +182,7 @@ const Cart = () => {
                             {item.quantity}
                           </span>
                           <button 
-                            className="w-8 h-8 rounded-md bg-white dark:bg-slate-600 text-slate-700 dark:text-slate-300 font-bold hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center justify-center"
+                            className="w-8 h-8 rounded-md bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center justify-center shadow-sm"
                             onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                           >
                             +
@@ -198,7 +196,7 @@ const Cart = () => {
                           ${itemTotal.toFixed(2)}
                         </span>
                         <button 
-                          className="w-10 h-10 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors flex items-center justify-center"
+                          className="w-10 h-10 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors flex items-center justify-center shadow-sm"
                           onClick={() => handleRemoveItem(item.id, item.name)}
                           title="Remove item"
                         >
@@ -214,7 +212,7 @@ const Cart = () => {
               })}
 
               {/* Actions */}
-              <div className="p-6 bg-slate-50 dark:bg-slate-700 flex flex-col sm:flex-row gap-4 justify-between items-center">
+              <div className="p-6 bg-slate-50 dark:bg-slate-900 flex flex-col sm:flex-row gap-4 justify-between items-center">
                 <button 
                   className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors"
                   onClick={handleClearCart}
@@ -233,7 +231,7 @@ const Cart = () => {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 sticky top-8">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 sticky top-8 transition-all duration-300">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Order Summary</h3>
               
               {/* Promo Code */}
@@ -244,7 +242,7 @@ const Cart = () => {
                     placeholder="Enter promo code"
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
-                    className="flex-1 px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="flex-1 px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                   <button 
                     onClick={handlePromoCode}
@@ -281,7 +279,7 @@ const Cart = () => {
                   <span className="font-semibold text-slate-900 dark:text-white">${tax.toFixed(2)}</span>
                 </div>
                 
-                <div className="border-t border-slate-200 dark:border-slate-600 pt-4">
+                <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
                   <div className="flex justify-between text-xl font-bold text-slate-900 dark:text-white">
                     <span>Total</span>
                     <span>${total.toFixed(2)}</span>
@@ -293,7 +291,7 @@ const Cart = () => {
               <button 
                 className={`w-full py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
                   isCheckingOut 
-                    ? 'bg-slate-300 dark:bg-slate-600 text-slate-500 dark:text-slate-400 cursor-not-allowed' 
+                    ? 'bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed' 
                     : 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1'
                 }`}
                 onClick={handleCheckout}

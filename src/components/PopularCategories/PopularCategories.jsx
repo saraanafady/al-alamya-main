@@ -20,21 +20,30 @@ const PopularCategories = () => {
 
   return (
     <section className="py-8 px-4 sm:py-10 sm:px-8 md:py-12 md:px-12 max-w-[1200px] mx-auto w-full box-border my-12 overflow-x-hidden">
-      <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">{t('categories.title')}</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center" style={{ color: 'var(--primary-text)' }}>{t('categories.title')}</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 md:gap-10 w-full box-border">
         {categories.map((cat, idx) => (
           <div
-            className="relative flex flex-col items-center p-6 sm:p-8 md:p-10 rounded-2xl bg-white dark:bg-slate-800 shadow-md hover:shadow-[0_8px_32px_rgba(37,99,235,0.15)] border border-slate-200 dark:border-slate-700 transition-all duration-300 overflow-hidden group cursor-pointer hover:-translate-y-1"
+            className="relative flex flex-col items-center p-6 sm:p-8 md:p-10 rounded-2xl shadow-md hover:shadow-[0_8px_32px_rgba(37,99,235,0.15)] transition-all duration-300 overflow-hidden group cursor-pointer hover:-translate-y-1"
+            style={{
+              background: 'var(--card-bg)',
+              border: '1px solid var(--card-border)'
+            }}
             key={idx}
           >
             {/* Top gradient bar on hover */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+            <div className="absolute top-0 left-0 w-full h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              style={{
+                background: 'linear-gradient(to right, var(--accent-gradient-from, #2563eb), var(--accent-gradient-to, #60a5fa))'
+              }}
+            />
             <img
               src={cat.img}
               alt={cat.label}
-              className="w-full max-w-[120px] max-h-[120px] sm:max-w-[140px] sm:max-h-[140px] object-contain mb-4 rounded-xl bg-blue-50 dark:bg-slate-900 p-4 transition-transform duration-300 group-hover:scale-105"
+              className="w-full max-w-[120px] max-h-[120px] sm:max-w-[140px] sm:max-h-[140px] object-contain mb-4 rounded-xl p-4 transition-transform duration-300 group-hover:scale-105"
+              style={{ background: 'var(--image-bg, #eff6ff)' }}
             />
-            <span className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white text-center leading-tight">
+            <span className="text-base sm:text-lg font-semibold text-center leading-tight" style={{ color: 'var(--primary-text)' }}>
               {cat.label}
             </span>
           </div>

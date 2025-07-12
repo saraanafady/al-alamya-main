@@ -1,6 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { useTranslation } from 'react-i18next';
+import { useCart } from '../../context/CartContext';
+import toast from 'react-hot-toast';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -12,8 +14,6 @@ import { swiperConfigs, createSwiperConfig } from '../../utils/swiperConfig';
 const ProductCarousel = ({ 
   products, 
   onProductClick, 
-  onAddToCart, 
-  cartItems = [],
   className = '',
   showNavigation = true,
   showPagination = false,
@@ -21,6 +21,7 @@ const ProductCarousel = ({
   customConfig = {}
 }) => {
   const { t, i18n } = useTranslation();
+  const { addToCart, isInCart, getItemQuantity } = useCart();
   const isRTL = i18n.language === 'ar';
 
   const swiperConfig = createSwiperConfig(
@@ -32,12 +33,28 @@ const ProductCarousel = ({
     isRTL
   );
 
-  const isInCart = (productId) => {
-    return cartItems.some(item => item.id === productId);
-  };
-
   const getReviewCount = (product) => {
     return Math.floor(Math.random() * 500) + 50;
+  };
+
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation();
+    const cartProduct = {
+      id: product.id,
+      name: product.title,
+      price: `$${product.price}`,
+      image: product.thumbnail,
+      category: product.category,
+      brand: product.brand
+    };
+    addToCart(cartProduct);
+    toast.success(t('cart.addedToCart', { product: product.title }), {
+      icon: '🛒',
+      style: {
+        background: '#10b981',
+        color: '#ffffff',
+      },
+    });
   };
 
   return (
@@ -58,7 +75,8 @@ const ProductCarousel = ({
         {products.map(product => (
           <SwiperSlide key={product.id}>
             <div 
-              className="relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-[0_8px_32px_rgba(37,99,235,0.15)] border border-slate-200 dark:border-slate-700 p-6 transition-all duration-300 h-full overflow-hidden group cursor-pointer hover:-translate-y-1"
+              style={{ background: 'var(--primary-bg)', color: 'var(--primary-text)' }}
+              className="relative flex flex-col rounded-2xl shadow-md hover:shadow-[0_8px_32px_rgba(37,99,235,0.15)] border border-slate-200 dark:border-slate-700 p-6 transition-all duration-300 h-full overflow-hidden group cursor-pointer hover:-translate-y-1"
               onClick={() => onProductClick?.(product)}
             >
               {/* Top gradient bar on hover */}
@@ -88,7 +106,7 @@ const ProductCarousel = ({
                     <span className="ml-1">({getReviewCount(product)})</span>
                   </div>
                 </div>
-                <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-2 leading-tight line-clamp-2 min-h-[2.8em]">{product.title}</h3>
+                <h3 style={{ color: 'var(--primary-text)' }} className="text-base font-semibold mb-2 leading-tight line-clamp-2 min-h-[2.8em]">{product.title}</h3>
                 <div className="flex items-center gap-3 mb-4 flex-wrap">
                   <span className="font-bold text-lg text-blue-600 dark:text-blue-400">
                     {t('common.currency')}{product.price}
@@ -101,12 +119,9 @@ const ProductCarousel = ({
                 </div>
                 <button 
                   className={`flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl w-full min-h-[44px] uppercase tracking-wide transition-all duration-300 mt-auto shadow-[0_2px_8px_rgba(37,99,235,0.2)] bg-gradient-to-br ${isInCart(product.id) ? 'from-emerald-500 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white' : 'from-blue-600 to-blue-400 hover:from-blue-900 hover:to-blue-600 text-white'} hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(37,99,235,0.3)]`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onAddToCart?.(product);
-                  }}
+                  onClick={(e) => handleAddToCart(e, product)}
                 >
-                  {isInCart(product.id) ? '✓ ' + t('cart.inCart') : t('cart.addToCart')}
+                  {isInCart(product.id) ? `${t('cart.inCart')} (${getItemQuantity(product.id)})` : t('cart.addToCart')}
                 </button>
               </div>
             </div>

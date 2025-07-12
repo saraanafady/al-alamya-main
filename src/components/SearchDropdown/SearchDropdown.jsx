@@ -17,9 +17,10 @@ const SearchDropdown = ({ isOpen, onClose }) => {
   } = useSearch();
   const { addToCart } = useCart();
 
+
+
   const handleResultClick = (result) => {
     if (result.type === 'product') {
-      // Navigate to product details or add to cart
       navigate(`/product/${result.id}`);
     } else if (result.type === 'category') {
       navigate(`/category/${result.title.toLowerCase()}`);
@@ -60,17 +61,31 @@ const SearchDropdown = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="absolute top-full left-0 right-0 z-50 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.15)] backdrop-blur-md mt-2 max-h-[500px] overflow-y-auto animate-in slide-in-from-top-2 duration-200">
+    <div className="absolute top-full left-0 right-0 z-50 rounded-xl shadow-[0_20px_40px_rgba(0,0,0,0.15)] backdrop-blur-md mt-2 max-h-[500px] overflow-y-auto animate-in slide-in-from-top-2 duration-200"
+      style={{
+        background: 'var(--card-bg)',
+        border: '1px solid var(--card-border)'
+      }}
+    >
       <div className="p-4">
         {/* Search Results */}
         {searchQuery && (
           <div className="mb-6 last:mb-0">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200 dark:border-slate-700">
-              <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b"
+              style={{ borderColor: 'var(--card-border)' }}
+            >
+              <h4 className="text-sm font-semibold uppercase tracking-wide"
+                style={{ color: 'var(--secondary-text)' }}
+              >
                 Search Results
               </h4>
               {isSearching && (
-                <div className="w-4 h-4 border-2 border-slate-200 dark:border-slate-600 border-t-blue-600 dark:border-t-blue-400 rounded-full animate-spin"></div>
+                <div className="w-4 h-4 border-2 rounded-full animate-spin"
+                  style={{
+                    borderColor: 'var(--secondary-text)',
+                    borderTopColor: 'var(--accent-text, #2563eb)'
+                  }}
+                />
               )}
             </div>
             
@@ -79,36 +94,54 @@ const SearchDropdown = ({ isOpen, onClose }) => {
                 {searchResults.slice(0, 8).map((result) => (
                   <div 
                     key={result.id} 
-                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-600"
+                    className="flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-200 hover:-translate-y-0.5"
+                    style={{
+                      background: 'var(--primary-bg)',
+                      border: '1px solid transparent'
+                    }}
                     onClick={() => handleResultClick(result)}
                   >
                     <div className="relative w-12 h-12 flex-shrink-0">
                       <img 
                         src={result.thumbnail || '/images/placeholder.png'} 
                         alt={result.title}
-                        className="w-full h-full object-cover rounded-lg border border-slate-200 dark:border-slate-600"
+                        className="w-full h-full object-cover rounded-lg"
+                        style={{ border: '1px solid var(--card-border)' }}
                         onError={(e) => {
                           e.target.src = '/images/placeholder.png';
                         }}
                       />
-                      <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-semibold px-1 py-0.5 rounded uppercase">
+                      <span className="absolute -top-1 -right-1 text-white text-xs font-semibold px-1 py-0.5 rounded uppercase"
+                        style={{ background: 'var(--accent-text, #2563eb)' }}
+                      >
                         {result.type}
                       </span>
                     </div>
                     
                     <div className="flex-1 min-w-0">
-                      <h5 className="text-sm font-semibold text-slate-900 dark:text-white mb-1 line-clamp-1">
+                      <h5 className="text-sm font-semibold mb-1 line-clamp-1"
+                        style={{ color: 'var(--primary-text)' }}
+                      >
                         {result.title}
                       </h5>
-                      <p className="text-xs text-slate-600 dark:text-slate-400 mb-2 line-clamp-2">
+                      <p className="text-xs mb-2 line-clamp-2"
+                        style={{ color: 'var(--secondary-text)' }}
+                      >
                         {result.description}
                       </p>
                       {result.type === 'product' && (
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-orange-500">
+                          <span className="text-sm font-semibold"
+                            style={{ color: 'var(--accent-text, #2563eb)' }}
+                          >
                             ${result.price}
                           </span>
-                          <span className="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded">
+                          <span className="text-xs px-2 py-0.5 rounded"
+                            style={{
+                              background: 'var(--primary-bg)',
+                              color: 'var(--secondary-text)'
+                            }}
+                          >
                             {result.category}
                           </span>
                         </div>
@@ -117,7 +150,11 @@ const SearchDropdown = ({ isOpen, onClose }) => {
                     
                     {result.type === 'product' && (
                       <button 
-                        className="w-8 h-8 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors flex items-center justify-center flex-shrink-0"
+                        className="w-8 h-8 rounded-lg transition-all duration-200 flex items-center justify-center flex-shrink-0 hover:scale-110"
+                        style={{
+                          background: 'var(--accent-bg, rgba(37, 99, 235, 0.1))',
+                          color: 'var(--accent-text, #2563eb)'
+                        }}
                         onClick={(e) => handleAddToCart(e, result)}
                         title="Add to cart"
                       >
@@ -132,9 +169,15 @@ const SearchDropdown = ({ isOpen, onClose }) => {
                 ))}
                 
                 {searchResults.length > 8 && (
-                  <div className="text-center pt-3 border-t border-slate-200 dark:border-slate-700">
+                  <div className="text-center pt-3 border-t"
+                    style={{ borderColor: 'var(--card-border)' }}
+                  >
                     <button 
-                      className="border border-slate-200 dark:border-slate-600 text-slate-900 dark:text-white px-3 py-1.5 rounded-md text-xs font-semibold hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-all duration-200 hover:-translate-y-0.5"
+                      className="border px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5"
+                      style={{
+                        borderColor: 'var(--card-border)',
+                        color: 'var(--primary-text)'
+                      }}
                       onClick={() => {
                         navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
                         onClose();
@@ -146,7 +189,9 @@ const SearchDropdown = ({ isOpen, onClose }) => {
                 )}
               </div>
             ) : !isSearching && (
-              <div className="text-center py-8 text-slate-600 dark:text-slate-400">
+              <div className="text-center py-8"
+                style={{ color: 'var(--secondary-text)' }}
+              >
                 <p className="text-sm">No results found for "{searchQuery}"</p>
               </div>
             )}
@@ -156,12 +201,17 @@ const SearchDropdown = ({ isOpen, onClose }) => {
         {/* Search History */}
         {!searchQuery && searchHistory.length > 0 && (
           <div className="mb-6 last:mb-0">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200 dark:border-slate-700">
-              <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b"
+              style={{ borderColor: 'var(--card-border)' }}
+            >
+              <h4 className="text-sm font-semibold uppercase tracking-wide"
+                style={{ color: 'var(--secondary-text)' }}
+              >
                 Recent Searches
               </h4>
               <button 
-                className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
+                className="text-xs transition-colors"
+                style={{ color: 'var(--secondary-text)' }}
                 onClick={() => removeFromHistory()}
               >
                 Clear
@@ -171,16 +221,22 @@ const SearchDropdown = ({ isOpen, onClose }) => {
               {searchHistory.slice(0, 5).map((query, index) => (
                 <div 
                   key={index} 
-                  className="flex items-center gap-3 p-2 rounded-md cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors group"
+                  className="flex items-center gap-3 p-2 rounded-md cursor-pointer transition-all duration-200 group hover:-translate-y-0.5"
+                  style={{ background: 'var(--primary-bg)' }}
                   onClick={() => handleHistoryClick(query)}
                 >
-                  <svg className="w-4 h-4 text-slate-400 dark:text-slate-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+                    style={{ color: 'var(--secondary-text)' }}
+                  >
                     <circle cx="11" cy="11" r="8"/>
                     <path d="M21 21L16.65 16.65"/>
                   </svg>
-                  <span className="text-sm text-slate-700 dark:text-slate-300 flex-1">{query}</span>
+                  <span className="text-sm flex-1"
+                    style={{ color: 'var(--primary-text)' }}
+                  >{query}</span>
                   <button 
-                    className="w-5 h-5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 opacity-0 group-hover:opacity-100 transition-all duration-200 flex-shrink-0"
+                    className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all duration-200 flex-shrink-0"
+                    style={{ color: 'var(--secondary-text)' }}
                     onClick={(e) => {
                       e.stopPropagation();
                       removeFromHistory(query);
@@ -200,8 +256,12 @@ const SearchDropdown = ({ isOpen, onClose }) => {
         {/* Popular Searches */}
         {!searchQuery && (
           <div className="mb-6 last:mb-0">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-200 dark:border-slate-700">
-              <h4 className="text-sm font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wide">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b"
+              style={{ borderColor: 'var(--card-border)' }}
+            >
+              <h4 className="text-sm font-semibold uppercase tracking-wide"
+                style={{ color: 'var(--secondary-text)' }}
+              >
                 Popular Searches
               </h4>
             </div>
@@ -209,7 +269,11 @@ const SearchDropdown = ({ isOpen, onClose }) => {
               {getPopularSearches().map((query, index) => (
                 <button 
                   key={index}
-                  className="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium rounded-full hover:bg-orange-500 hover:text-white transition-all duration-200"
+                  className="px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 hover:-translate-y-0.5"
+                  style={{
+                    background: 'var(--primary-bg)',
+                    color: 'var(--primary-text)'
+                  }}
                   onClick={() => handlePopularSearchClick(query)}
                 >
                   {query}

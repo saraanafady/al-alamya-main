@@ -96,12 +96,25 @@ const RecommendationsSection = ({ products, loading }) => {
   };
 
   return (
-    <section className="my-12 bg-slate-50 dark:bg-slate-900 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-700 w-full box-border overflow-x-hidden">
+    <section
+      className="my-12 rounded-2xl p-6 md:p-8 w-full box-border overflow-x-hidden"
+      style={{
+        background: 'var(--primary-bg)',
+        border: '1px solid var(--card-border)'
+      }}
+    >
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pb-6 px-2">
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white m-0 leading-tight">{t('recommendations.title')}</h2>
+        <h2 className="text-2xl md:text-3xl font-bold m-0 leading-tight" style={{ color: 'var(--primary-text)' }}>{t('recommendations.title')}</h2>
         <div className="flex justify-end">
-          <button className="bg-transparent border-2 border-blue-600 text-blue-600 font-semibold text-sm flex items-center gap-2 cursor-pointer px-6 py-2 rounded-full transition-all duration-300 uppercase tracking-wide hover:bg-blue-600 hover:text-white hover:-translate-y-0.5 hover:shadow-lg">
+          <button
+            onClick={() => navigate('/search')}
+            className="bg-transparent border-2 font-semibold text-sm flex items-center gap-2 cursor-pointer px-6 py-2 rounded-full transition-all duration-300 uppercase tracking-wide hover:-translate-y-0.5 hover:shadow-lg"
+            style={{
+              borderColor: 'var(--accent-text, #2563eb)',
+              color: 'var(--accent-text, #2563eb)'
+            }}
+          >
             {t('common.viewAll')}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 12L10 8L6 4" stroke="#FF6A00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -110,16 +123,32 @@ const RecommendationsSection = ({ products, loading }) => {
         </div>
       </div>
       {/* Categories */}
-      <div className={`sticky top-0 z-10 bg-slate-50 dark:bg-slate-900 transition-all duration-300 border-b border-slate-200 dark:border-slate-700 py-4 ${isScrolled ? 'shadow-[0_8px_32px_rgba(37,99,235,0.15)] bg-white dark:bg-slate-800' : ''}`}> 
+      <div
+        className={`sticky top-0 z-10 transition-all duration-300 border-b py-4 ${isScrolled ? 'shadow-[0_8px_32px_rgba(37,99,235,0.15)]' : ''}`}
+        style={{
+          background: 'var(--primary-bg)',
+          borderColor: 'var(--card-border)'
+        }}
+      > 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 px-2">
           {categories.map(category => (
             <button
               key={category.key}
-              className={`relative flex items-center justify-center w-full min-h-[44px] px-4 py-2 rounded-full border-2 font-semibold text-xs md:text-sm uppercase tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-900 ${selectedCategory === category.key ? 'bg-blue-600 text-white border-blue-600 shadow-lg -translate-y-0.5' : 'bg-white dark:bg-slate-800 text-blue-600 border-slate-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-700 hover:border-blue-600 hover:text-blue-600 hover:-translate-y-0.5'}`}
+              className={`relative flex items-center justify-center w-full min-h-[44px] px-4 py-2 rounded-full border-2 font-semibold text-xs md:text-sm uppercase tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 ${selectedCategory === category.key ? 'shadow-lg -translate-y-0.5' : 'hover:-translate-y-0.5'}`}
+              style={{
+                background: selectedCategory === category.key ? 'var(--accent-text, #2563eb)' : 'var(--card-bg)',
+                color: selectedCategory === category.key ? 'white' : 'var(--accent-text, #2563eb)',
+                borderColor: selectedCategory === category.key ? 'var(--accent-text, #2563eb)' : 'var(--card-border)',
+                borderWidth: '2px'
+              }}
               onClick={() => setSelectedCategory(category.key)}
             >
               {category.label}
-              {selectedCategory === category.key && <span className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-8 h-1 bg-blue-600 rounded-full animate-[slideIn_0.3s_ease]"></span>}
+              {selectedCategory === category.key && (
+                <span className="absolute bottom-[-6px] left-1/2 -translate-x-1/2 w-8 h-1 rounded-full animate-[slideIn_0.3s_ease]"
+                  style={{ background: 'var(--accent-text, #2563eb)' }}
+                />
+              )}
             </button>
           ))}
         </div>
@@ -127,29 +156,46 @@ const RecommendationsSection = ({ products, loading }) => {
       {/* Loading Spinner */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-16">
-          <div className="w-10 h-10 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mb-4"></div>
-          <p className="text-slate-400 dark:text-slate-500 text-lg">{t('common.loading')}</p>
+          <div className="w-10 h-10 border-4 rounded-full animate-spin mb-4"
+            style={{
+              borderColor: 'var(--accent-text, #2563eb)',
+              borderTopColor: 'var(--accent-text, #2563eb)'
+            }}
+          />
+          <p className="text-lg" style={{ color: 'var(--secondary-text)' }}>{t('common.loading')}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8 p-2 mt-6">
           {displayProducts.map(product => (
             <div 
-              className="relative flex flex-col bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-[0_8px_32px_rgba(37,99,235,0.15)] border border-slate-200 dark:border-slate-700 p-6 transition-all duration-300 h-full overflow-hidden group cursor-pointer hover:-translate-y-1"
+              className="relative flex flex-col rounded-2xl shadow-md hover:shadow-[0_8px_32px_rgba(37,99,235,0.15)] p-6 transition-all duration-300 h-full overflow-hidden group cursor-pointer hover:-translate-y-1"
+              style={{
+                background: 'var(--card-bg)',
+                border: '1px solid var(--card-border)'
+              }}
               key={product.id}
               onClick={() => handleProductClick(product)}
             >
               {/* Top gradient bar on hover */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+              <div className="absolute top-0 left-0 w-full h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+                style={{
+                  background: 'linear-gradient(to right, var(--accent-gradient-from, #2563eb), var(--accent-gradient-to, #60a5fa))'
+                }}
+              />
               {/* Product Image */}
-              <div className="relative w-full h-40 mb-4 flex items-center justify-center bg-slate-50 dark:bg-slate-900 rounded-xl overflow-hidden">
+              <div className="relative w-full h-40 mb-4 flex items-center justify-center rounded-xl overflow-hidden"
+                style={{ background: 'var(--image-bg, #f8fafc)' }}
+              >
                 <img src={product.thumbnail} alt={product.title} className="max-w-[80%] max-h-[80%] object-contain transition-transform duration-300 group-hover:scale-105" />
-                <div className="absolute top-3 left-3 bg-blue-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-[0_2px_8px_rgba(37,99,235,0.3)] z-20">{t('recommendations.new')}</div>
+                <div className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-[0_2px_8px_rgba(37,99,235,0.3)] z-20"
+                  style={{ background: 'var(--accent-text, #2563eb)' }}
+                >{t('recommendations.new')}</div>
               </div>
               {/* Product Info */}
               <div className="flex flex-col gap-2 flex-1">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs text-blue-600 dark:text-blue-400 font-semibold uppercase tracking-wide">{product.brand}</span>
-                  <div className="flex items-center gap-1 text-xs text-slate-400 dark:text-slate-400">
+                  <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--accent-text, #2563eb)' }}>{product.brand}</span>
+                  <div className="flex items-center gap-1 text-xs" style={{ color: 'var(--secondary-text)' }}>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M7 1L8.854 5.078L13 5.724L10 8.84L10.708 13L7 11.078L3.292 13L4 8.84L1 5.724L5.146 5.078L7 1Z" fill="#FFC107" stroke="#FFC107" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -157,21 +203,27 @@ const RecommendationsSection = ({ products, loading }) => {
                     <span className="ml-1">({getReviewCount(product)})</span>
                   </div>
                 </div>
-                <span className="text-base font-semibold text-slate-900 dark:text-white mb-1 leading-tight line-clamp-2 min-h-[2.8em]">{product.title}</span>
+                <span className="text-base font-semibold mb-1 leading-tight line-clamp-2 min-h-[2.8em]" style={{ color: 'var(--primary-text)' }}>{product.title}</span>
               </div>
               <div className="flex items-center gap-3 mb-4 flex-wrap">
-                <span className="font-bold text-lg text-blue-600 dark:text-blue-400">
+                <span className="font-bold text-lg" style={{ color: 'var(--accent-text, #2563eb)' }}>
                   {t('common.currency')}{product.price}
                 </span>
                 {product.salePrice && (
                   <>
-                    <span className="text-base text-slate-400 line-through">{t('common.currency')}{product.price + product.salePrice}</span>
-                    <span className="bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full ml-2">-{Math.round((product.salePrice / (product.price + product.salePrice)) * 100)}%</span>
+                    <span className="text-base line-through" style={{ color: 'var(--secondary-text)' }}>{t('common.currency')}{product.price + product.salePrice}</span>
+                    <span className="text-white text-xs font-semibold px-2 py-1 rounded-full ml-2" style={{ background: 'var(--error-bg, #ef4444)' }}>-{Math.round((product.salePrice / (product.price + product.salePrice)) * 100)}%</span>
                   </>
                 )}
               </div>
               <button 
-                className={`flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl w-full min-h-[40px] uppercase tracking-wide transition-all duration-300 mt-auto shadow-[0_2px_8px_rgba(37,99,235,0.2)] bg-gradient-to-br ${isInCart(product.id) ? 'from-emerald-500 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white' : 'from-blue-600 to-blue-400 hover:from-blue-900 hover:to-blue-600 text-white'} hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(37,99,235,0.3)]`}
+                className={`flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl w-full min-h-[40px] uppercase tracking-wide transition-all duration-300 mt-auto shadow-[0_2px_8px_rgba(37,99,235,0.2)] hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(37,99,235,0.3)]`}
+                style={{
+                  background: isInCart(product.id) 
+                    ? 'linear-gradient(135deg, var(--success-gradient-from, #10b981), var(--success-gradient-to, #059669))'
+                    : 'linear-gradient(135deg, var(--accent-gradient-from, #2563eb), var(--accent-gradient-to, #60a5fa))',
+                  color: 'white'
+                }}
                 onClick={(e) => handleAddToCart(e, product)}
               >
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -187,7 +239,13 @@ const RecommendationsSection = ({ products, loading }) => {
       )}
       {/* Mobile View All */}
       <div className="block md:hidden mt-8 text-center">
-        <button className="bg-transparent border-2 border-blue-600 text-blue-600 font-semibold text-sm flex items-center gap-2 cursor-pointer px-6 py-2 rounded-full transition-all duration-300 uppercase tracking-wide hover:bg-blue-600 hover:text-white hover:-translate-y-0.5 hover:shadow-lg mx-auto">
+        <button
+          className="bg-transparent border-2 font-semibold text-sm flex items-center gap-2 cursor-pointer px-6 py-2 rounded-full transition-all duration-300 uppercase tracking-wide hover:-translate-y-0.5 hover:shadow-lg mx-auto"
+          style={{
+            borderColor: 'var(--accent-text, #2563eb)',
+            color: 'var(--accent-text, #2563eb)'
+          }}
+        >
           {t('recommendations.viewAllProducts')}
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 12L10 8L6 4" stroke="#FF6A00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

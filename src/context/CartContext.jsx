@@ -113,7 +113,9 @@ export const CartProvider = ({ children }) => {
   // Cart calculations
   const getCartTotal = () => {
     return state.items.reduce((total, item) => {
-      const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
+      // Handle cases where price might be undefined, null, or not a string
+      const priceString = item.price?.toString() || '0';
+      const price = parseFloat(priceString.replace(/[^0-9.-]+/g, '')) || 0;
       return total + (price * item.quantity);
     }, 0);
   };

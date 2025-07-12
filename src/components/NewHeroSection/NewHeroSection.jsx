@@ -42,11 +42,18 @@ const NewHeroSection = () => {
 
   if (loading) {
     return (
-      <section className="py-12 px-4 bg-slate-50 dark:bg-slate-900">
+      <section className="py-12 px-4"
+        style={{ background: 'var(--primary-bg)' }}
+      >
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col items-center justify-center min-h-[500px] gap-4">
-            <div className="w-12 h-12 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
-            <p className="text-slate-600 dark:text-slate-400 text-lg">{t('common.loading') || 'Loading...'}</p>
+            <div className="w-12 h-12 border-4 rounded-full animate-spin"
+              style={{
+                borderColor: 'var(--accent-text, #2563eb)',
+                borderTopColor: 'var(--accent-text, #2563eb)'
+              }}
+            />
+            <p className="text-lg" style={{ color: 'var(--secondary-text)' }}>{t('common.loading') || 'Loading...'}</p>
           </div>
         </div>
       </section>
@@ -54,7 +61,9 @@ const NewHeroSection = () => {
   }
 
   return (
-    <section className="py-12 px-4 bg-slate-50 dark:bg-slate-900">
+    <section className="py-12 px-4"
+      style={{ background: 'var(--primary-bg)' }}
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="relative">
           <Swiper
@@ -79,9 +88,9 @@ const NewHeroSection = () => {
               <SwiperSlide key={product.id}>
                 <div 
                   onClick={() => handleProductClick(product)} 
-                  className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-3xl hover:-translate-y-2 border border-slate-200 dark:border-slate-700"
+                  className="rounded-3xl shadow-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-3xl hover:-translate-y-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
                 >
-                  <div className="relative bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800 p-6 h-64 flex items-center justify-center">
+                  <div className="relative p-6 h-64 flex items-center justify-center bg-slate-50 dark:bg-slate-700">
                     <img 
                       src={product.thumbnail} 
                       alt={product.title} 
@@ -89,18 +98,22 @@ const NewHeroSection = () => {
                       className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
                     />
                     {product.discountPercentage > 0 && (
-                      <div className="absolute top-4 right-4 bg-gradient-to-r from-red-500 to-red-600 text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg">
+                      <div className="absolute top-4 right-4 text-white text-sm font-bold px-3 py-1 rounded-full shadow-lg"
+                        style={{
+                          background: 'linear-gradient(to right, var(--error-gradient-from, #ef4444), var(--error-gradient-to, #dc2626))'
+                        }}
+                      >
                         -{Math.round(product.discountPercentage)}%
                       </div>
                     )}
                   </div>
                   
-                  <div className="p-6">
-                    <div className="text-blue-600 dark:text-blue-400 text-sm font-semibold uppercase tracking-wide mb-2">
+                  <div className="p-6 bg-white dark:bg-slate-800">
+                    <div className="text-sm font-semibold uppercase tracking-wide mb-2 text-blue-600 dark:text-blue-400">
                       {product.brand || product.category}
                     </div>
                     
-                    <h3 className="text-slate-900 dark:text-white text-xl font-bold mb-3 line-clamp-2 leading-tight">
+                    <h3 className="text-xl font-bold mb-3 line-clamp-2 leading-tight text-slate-900 dark:text-white">
                       {product.title}
                     </h3>
                     
@@ -109,17 +122,22 @@ const NewHeroSection = () => {
                         {[...Array(5)].map((_, i) => (
                           <svg 
                             key={i} 
-                            className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-slate-300 dark:text-slate-600'}`}
+                            className="w-4 h-4"
+                            style={{ 
+                              color: i < Math.floor(product.rating) 
+                                ? '#fbbf24' 
+                                : '#d1d5db'
+                            }}
                             width="14" 
                             height="14" 
                             viewBox="0 0 14 14" 
-                            fill="none"
+                            fill="currentColor"
                           >
                             <path d="M7 1L8.545 4.13L12 4.635L9.5 7.07L10.09 10.5L7 8.885L3.91 10.5L4.5 7.07L2 4.635L5.455 4.13L7 1Z" />
                           </svg>
                         ))}
                       </div>
-                      <span className="text-slate-600 dark:text-slate-400 text-sm font-medium">
+                      <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
                         ({product.rating})
                       </span>
                     </div>
@@ -129,7 +147,7 @@ const NewHeroSection = () => {
                         ${getDiscountedPrice(product)}
                       </span>
                       {product.discountPercentage > 0 && (
-                        <span className="text-lg text-slate-500 dark:text-slate-400 line-through">
+                        <span className="text-lg line-through text-slate-500 dark:text-slate-400">
                           ${product.price}
                         </span>
                       )}
@@ -143,18 +161,32 @@ const NewHeroSection = () => {
         
         <div className="text-center lg:text-left">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight">
-              Discover Premium <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Electronics</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+              style={{ color: 'var(--primary-text)' }}
+            >
+              Discover Premium <span className="bg-clip-text text-transparent"
+                style={{
+                  background: 'linear-gradient(to right, var(--accent-gradient-from, #2563eb), var(--accent-gradient-to, #7c3aed))',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >Electronics</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0"
+              style={{ color: 'var(--secondary-text)' }}
+            >
               Explore our curated collection of cutting-edge technology and premium electronics. From smartphones to smart devices, find everything you need.
             </p>
             
             <button 
               onClick={() => navigate('/products')} 
               aria-label="Shop Now"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+              className="inline-flex items-center gap-3 font-semibold text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group"
+              style={{
+                background: 'linear-gradient(to right, var(--accent-gradient-from, #2563eb), var(--accent-gradient-to, #7c3aed))',
+                color: 'white'
+              }}
             >
               {t('hero.shopNow') || 'Shop Now'}
               <svg 
@@ -175,19 +207,19 @@ const NewHeroSection = () => {
         .new-hero-pagination-bullet {
           width: 10px;
           height: 10px;
-          background: rgba(59, 130, 246, 0.3);
+          background: rgba(37, 99, 235, 0.3);
           border-radius: 50%;
           cursor: pointer;
           transition: all 0.3s ease;
         }
         
         .new-hero-pagination-bullet:hover {
-          background: rgba(59, 130, 246, 0.6);
+          background: rgba(37, 99, 235, 0.6);
           transform: scale(1.2);
         }
         
         .new-hero-pagination-bullet.swiper-pagination-bullet-active {
-          background: rgba(59, 130, 246, 0.9);
+          background: rgba(37, 99, 235, 0.9);
           transform: scale(1.3);
         }
       `}</style>

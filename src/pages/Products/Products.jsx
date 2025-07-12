@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useCart } from '../../context/CartContext';
+import toast from 'react-hot-toast';
+import { useSearch } from '../../context/SearchContext';
 
 const FAVORITES_KEY = 'favorites';
-const CART_KEY = 'cart';
 
 const Products = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { addToCart, isInCart, getItemQuantity } = useCart();
+  const { searchQuery, setSearchQuery } = useSearch();
   const [searchParams, setSearchParams] = useSearchParams();
   
   const [products, setProducts] = useState([]);
@@ -18,29 +22,20 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('default');
   const [priceRange, setPriceRange] = useState([0, 2000]);
-  const [searchQuery, setSearchQuery] = useState('');
   const [favorites, setFavorites] = useState([]); // Favorite product IDs
-  const [cart, setCart] = useState([]); // Cart product IDs
   
   const productsPerPage = 12;
 
-  // Load favorites and cart from localStorage on mount
+  // Load favorites from localStorage on mount
   useEffect(() => {
     const favs = JSON.parse(localStorage.getItem(FAVORITES_KEY) || '[]');
-    const cartItems = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
     setFavorites(favs);
-    setCart(cartItems);
   }, []);
 
   // Persist favorites to localStorage
   useEffect(() => {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
   }, [favorites]);
-
-  // Persist cart to localStorage
-  useEffect(() => {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  }, [cart]);
 
   useEffect(() => {
     fetchProducts();
@@ -51,7 +46,7 @@ const Products = () => {
     // Get search query from URL params
     const query = searchParams.get('search') || '';
     setSearchQuery(query);
-  }, [searchParams]);
+  }, [searchParams, setSearchQuery]);
 
   useEffect(() => {
     filterAndSortProducts();
@@ -148,9 +143,24 @@ const Products = () => {
   };
 
   // Cart logic
-  const isInCart = (id) => cart.includes(id);
-  const handleAddToCart = (id) => {
-    if (!isInCart(id)) setCart((prev) => [...prev, id]);
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation();
+    const cartProduct = {
+      id: product.id,
+      name: product.title,
+      price: `$${product.price}`,
+      image: product.thumbnail,
+      category: product.category,
+      brand: product.brand
+    };
+    addToCart(cartProduct);
+    toast.success(t('cart.addedToCart', { product: product.title }), {
+      icon: '🛒',
+      style: {
+        background: '#10b981',
+        color: '#ffffff',
+      },
+    });
   };
 
   const handleCategoryChange = (category) => {
@@ -298,17 +308,17 @@ const Products = () => {
             <button
               className={`mt-6 w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-base font-semibold uppercase tracking-wide transition-all duration-300 shadow-[0_2px_8px_rgba(37,99,235,0.2)] bg-gradient-to-br ${isInCart(product.id) ? 'from-emerald-500 to-emerald-700 text-white cursor-not-allowed' : 'from-blue-600 to-blue-400 hover:from-blue-900 hover:to-blue-600 text-white hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(37,99,235,0.3)]'}`}
               disabled={isInCart(product.id)}
-              onClick={e => { e.stopPropagation(); handleAddToCart(product.id); }}
+              onClick={e => handleAddToCart(e, product)}
             >
               {isInCart(product.id) ? (
                 <>
                   <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
-                  {t('cart.inCart') || 'In Cart'}
+                  {t('cart.inCart')} ({getItemQuantity(product.id)})
                 </>
               ) : (
                 <>
                   <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A1 1 0 007 17h10a1 1 0 00.95-.68l3.24-7.24A1 1 0 0020 8H6.21" /></svg>
-                  {t('cart.addToCart') || 'Add to Cart'}
+                  {t('cart.addToCart')}
                 </>
               )}
             </button>

@@ -33,7 +33,13 @@ const SecondNavbar = () => {
   };
 
   return (
-    <nav className={`bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 relative z-[90] transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-[95] shadow-[0_2px_10px_rgba(0,0,0,0.1)] bg-slate-50/95 dark:bg-slate-800/95 backdrop-blur-[10px] animate-[slideDown_0.3s_ease-out]' : ''}`}>
+    <nav className={`border-b relative z-[90] transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 right-0 z-[95] backdrop-blur-[10px] animate-[slideDown_0.3s_ease-out]' : ''}`}
+      style={{
+        background: isSticky ? 'var(--card-bg)' : 'var(--primary-bg)',
+        borderColor: 'var(--card-border)',
+        boxShadow: isSticky ? 'var(--shadow-lg)' : 'none'
+      }}
+    >
       <div className="max-w-[1400px] mx-auto px-4 flex items-center justify-between min-h-[60px] gap-8">
         {/* Categories Navigation */}
         <div className="flex-1 overflow-hidden relative">
@@ -42,29 +48,78 @@ const SecondNavbar = () => {
               <button
                 key={category.id}
                 onClick={() => handleCategoryClick(category.id)}
-                className={`relative flex items-center gap-2 py-3 px-4 bg-transparent border border-slate-200 dark:border-slate-600 rounded-full cursor-pointer transition-all duration-200 whitespace-nowrap text-sm font-medium min-w-fit focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800 ${
+                className={`relative flex items-center gap-2 py-3 px-4 bg-transparent border rounded-full cursor-pointer transition-all duration-200 whitespace-nowrap text-sm font-medium min-w-fit focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105 ${
                   activeCategory === category.id
-                    ? 'border-orange-500 text-orange-500 bg-orange-50 dark:bg-orange-900/20 font-semibold -translate-y-0.5 shadow-[0_4px_12px_rgba(255,125,26,0.2)]'
-                    : 'text-slate-600 dark:text-slate-400 hover:border-orange-500 hover:text-orange-500 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(255,125,26,0.15)] hover:bg-orange-50/50 dark:hover:bg-orange-900/10'
+                    ? 'font-semibold -translate-y-0.5'
+                    : 'hover:-translate-y-0.5'
                 }`}
+                style={{
+                  background: activeCategory === category.id ? 'var(--accent-text)' : 'transparent',
+                  color: activeCategory === category.id ? 'white' : 'var(--secondary-text)',
+                  borderColor: activeCategory === category.id ? 'var(--accent-text)' : 'var(--card-border)',
+                  borderWidth: '1px',
+                  boxShadow: activeCategory === category.id ? 'var(--shadow-md)' : 'none'
+                }}
+                onMouseEnter={(e) => {
+                  if (activeCategory !== category.id) {
+                    e.target.style.background = 'var(--tertiary-bg)';
+                    e.target.style.color = 'var(--primary-text)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeCategory !== category.id) {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = 'var(--secondary-text)';
+                  }
+                }}
               >
                 <span className="text-base flex items-center justify-center">{category.icon}</span>
                 <span className="font-medium">{category.label}</span>
                 {activeCategory === category.id && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-orange-500 rounded-sm animate-[slideIn_0.3s_ease]"></span>
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-sm animate-[slideIn_0.3s_ease]"
+                    style={{ background: 'white' }}
+                  />
                 )}
               </button>
             ))}
             {/* Gradient fade for scrollable categories */}
-            <span className="pointer-events-none absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-slate-50 dark:from-slate-800 to-transparent z-10 hidden md:block" />
+            <span className="pointer-events-none absolute top-0 right-0 w-8 h-full z-10 hidden md:block"
+              style={{
+                background: 'linear-gradient(to left, var(--primary-bg), transparent)'
+              }}
+            />
           </div>
         </div>
         {/* Quick Actions */}
         <div className="flex items-center gap-3 flex-shrink-0">
-          <button className="px-4 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-orange-50 dark:hover:bg-orange-900/10 hover:text-orange-500 transition-all duration-200 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800">
+          <button className="px-4 py-2 border rounded-lg text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 hover:scale-105 theme-button-secondary"
+            style={{
+              color: 'var(--secondary-text)'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'var(--accent-text)';
+              e.target.style.color = 'white';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'var(--card-bg)';
+              e.target.style.color = 'var(--secondary-text)';
+            }}
+          >
             Filter
           </button>
-          <button className="px-4 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-orange-50 dark:hover:bg-orange-900/10 hover:text-orange-500 transition-all duration-200 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-800">
+          <button className="px-4 py-2 border rounded-lg text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-200 hover:scale-105 theme-button-secondary"
+            style={{
+              color: 'var(--secondary-text)'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'var(--accent-text)';
+              e.target.style.color = 'white';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'var(--card-bg)';
+              e.target.style.color = 'var(--secondary-text)';
+            }}
+          >
             Sort
           </button>
         </div>
